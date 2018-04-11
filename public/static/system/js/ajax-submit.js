@@ -91,21 +91,20 @@ function js_ajax_form_action(btn,url,data,msg,is_layer) {
         },
         success:function (data) {
             btn.data("loading",false).prop('disabled',false).removeClass('disabled');
-            layer.msg(data.msg,{time:3000});
             $('input[name=name]').focus();
             if(data.url){
                 if(is_layer){
-                    window.parent.location.href=data.url;
+                    layer.msg(data.msg,function () {window.parent.location.href=data.url;});
                 }else{
-                    window.location.href=data.url;
+                    layer.msg(data.msg,function () { window.location.href=data.url;});
                 }
                 return false;
             }
             if(data.code){
                 if(is_layer){
-                    window.parent.location.reload();
+                    layer.msg(data.msg,function () { window.parent.location.reload();});
                 }else{
-                    window.location.reload();
+                    layer.msg(data.msg,function () { window.location.reload();});
                 }
                 return false;
             }else{
