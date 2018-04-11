@@ -65,11 +65,13 @@ class Banner extends Auth
             $datas=input();
             $rules=[
                 'img'=>'require',
-                'url'=>'require'
+                'url'=>'require',
+                'type'=>'require'
             ];
             $msg=[
                 'img.require'=>'图片不能为空',
                 'url.require'=>'跳转地址不能为空',
+                'type.require'=>'类型不能为空'
             ];
             $result=$this->validate($datas,$rules,$msg);
             if(true !== $result){
@@ -98,11 +100,13 @@ class Banner extends Auth
             $datas=input();
             $rules=[
                 'img'=>'require',
-                'url'=>'require'
+                'url'=>'require',
+                'type'=>'require'
             ];
             $msg=[
                 'img.require'=>'图片不能为空',
                 'url.require'=>'跳转地址不能为空',
+                'type.require'=>'类型不能为空'
             ];
 
             $result=$this->validate($datas,$rules,$msg);

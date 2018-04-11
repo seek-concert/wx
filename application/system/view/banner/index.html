@@ -41,6 +41,7 @@
                 </th>
                 <th>ID</th>
                 <th>图片</th>
+                <th>类型</th>
                 <th>跳转地址</th>
                 <th>操作</th>
             </tr>
@@ -51,6 +52,7 @@
                 </td>
                 <td>{$infos->id}</td>
                 <td><img src="{$infos->img}" width="50px" height="50px" alt="图片资源丢失"></td>
+                <td>{$infos->type}</td>
                 <td>{$infos->url}</td>
                 <td>
                     <button type="button" class="btn" onclick="layerIfWindow('详细信息',	'{:url('edit',['id'=>$infos->id])}','','450')" >详细信息</button>

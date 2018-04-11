@@ -19,4 +19,10 @@ class Banners extends Model
 
     ];
 
+    public function getTypeAttr($value)
+    {
+        $type = [1=>'首页轮播图',2=>'首页Banner图'];
+        return $type[$value];
+    }
+
 }
