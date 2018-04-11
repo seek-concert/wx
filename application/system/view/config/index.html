@@ -54,7 +54,7 @@
             <tr class="h50">
                 <td colspan="4" style="text-align: center;">
                     微信参数
-                    <button type="button" class="btn" onclick="layerIfWindow('微信参数',	'{:url('wxsetting',['id'=>$infos->id])}',600,300)" >
+                    <button type="button" class="btn" onclick="layerIfWindow('微信参数',	'{:url('wxconfig',['id'=>$infos->id])}',600,300)" >
                         <img src="/static/system/img/richtext_editor.png">
                     </button>
                 </td>
@@ -116,8 +116,63 @@
     </div>
 </form>
 <script src="__STATIC__/system/js/upload.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="__STATIC__/system/kindeditor/themes/default/default.css"/>
+<script type="text/javascript" src="__STATIC__/system/js/ajax-submit.js" charset="utf-8"></script>
+<script type="text/javascript" src="__STATIC__/system/kindeditor/kindeditor-all-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__STATIC__/system/kindeditor/lang/zh-CN.js" charset="utf-8"></script>
+<script type="text/javascript" src="__STATIC__/system/kindeditor/plugins/code/prettify.js" charset="utf-8"></script>
 {:isset($notice)?$notice:''}
 <script>
+    /*=======富文本======*/
+    KindEditor.ready(function(K) {
+        window.editor = K.create('#product',{
+            width : '100%',
+            minHeight:'300',
+            uploadJson : upload_url,
+            fileManagerJson : filemanager_url,
+            allowFileManager : true,
+            items:['source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
+                'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+                'superscript', 'clearhtml', 'quickformat', 'selectall', '/',
+                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
+                'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+                'anchor', 'link', 'unlink', '|', 'about'],
+            afterBlur:function () {
+                editor.sync();
+            },
+            autoHeightMode : true,
+            afterCreate : function() {
+                this.loadPlugin('autoheight');
+            }
+        });
+    });
+    KindEditor.ready(function(K) {
+        window.editor = K.create('#company',{
+            width : '100%',
+            minHeight:'300',
+            uploadJson : upload_url,
+            fileManagerJson : filemanager_url,
+            allowFileManager : true,
+            items:['source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
+                'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+                'superscript', 'clearhtml', 'quickformat', 'selectall', '/',
+                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
+                'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+                'anchor', 'link', 'unlink', '|', 'about'],
+            afterBlur:function () {
+                editor.sync();
+            },
+            autoHeightMode : true,
+            afterCreate : function() {
+                this.loadPlugin('autoheight');
+            }
+        });
+    });
+    /*======二维码======*/
     $('#btn-getqrcode').click(function () {
         var _this=$(this);
         var appid="{:isset($infos)?$infos->wx_appid:''}";
@@ -133,7 +188,6 @@
                     upd_btn.siblings().remove();
                     upd_btn.before(qr_code_box);
                 }
-                console.log(resp.data);
             });
         }else{
             layer.msg('请先填入微信appid,appsecret！');

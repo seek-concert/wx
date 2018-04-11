@@ -12,6 +12,13 @@ use app\system\model\Configs;
 
 class Config extends Auth
 {
+    /* ========== 初始化 ========== */
+    public function _initialize()
+    {
+        parent::_initialize();
+
+    }
+
     /* ========== 配置信息 ========== */
     public function index(){
         $model=new Configs();
@@ -35,7 +42,7 @@ class Config extends Auth
     }
 
     /* ========== 微信参数 ========== */
-    public function wxsetting(){
+    public function wxconfig(){
         $id=input('id');
         if(!$id){
             return $this->error('错误操作');
@@ -59,13 +66,13 @@ class Config extends Auth
 
     /* ========== 自动获取微信二维码 ========== */
     public function wxqrcode(){
-        $settings=Configs::field(['wx_appid','wx_appsecret'])->find();
-        if($settings && $settings->wx_appid && $settings->wx_appsecret){
+        $configs=Configs::field(['wx_appid','wx_appsecret'])->find();
+        if($configs && $configs->wx_appid && $configs->wx_appsecret){
             $ticket=cache('qrcode_ticket');
             if(!$ticket){
                 $access_token=cache('base_access_token');
                 if(!$access_token){
-                    $res=https_request('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.$settings->wx_appid.'&secret='.$settings->wx_appsecret);
+                    $res=https_request('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.$configs->wx_appid.'&secret='.$configs->wx_appsecret);
                     $res=json_decode($res,true);
                     if(!isset($res['access_token'])){
                         return $this->error('获取失败','',$res);
