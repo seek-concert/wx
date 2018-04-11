@@ -17,6 +17,18 @@
                 </td>
             </tr>
             <tr class="h50">
+                <td><label for="url">图片类型：</label></td>
+                <td colspan="3">
+                    {if condition="isset($infos) and $infos->type"}
+                    <label><input name="type" class="va_m" type="radio" value="1" {if condition="$infos->getData('type') eq 1"}checked{/if}>首页轮播图</label>
+                    <label><input name="type" class="va_m" type="radio" value="2" {if condition="$infos->getData('type') eq 2"}checked{/if}>首页Banner图</label>
+                    {else/}
+                    <label><input name="type" class="va_m" type="radio" value="1" checked>首页轮播图</label>
+                    <label><input name="type" class="va_m" type="radio" value="2" >首页Banner图</label>
+                    {/if}
+                </td>
+            </tr>
+            <tr class="h50">
                 <td>上传图片： </td>
                 <td class="imgCon" colspan="3">
                     {if condition="isset($infos) and $infos->img"}

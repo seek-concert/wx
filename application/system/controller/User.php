@@ -271,7 +271,7 @@ class User extends Auth
 
             $user_model->isUpdate(true)->allowField(['password','updated_at'])->save($datas);
             if($user_model !== false){
-                return $this->success('修改成功','');
+                return $this->success('修改成功');
             }else{
                 return $this->error('修改失败');
             }

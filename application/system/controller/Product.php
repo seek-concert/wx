@@ -1,6 +1,6 @@
 <?php
 /* |------------------------------------------------------
- * | 系统设置 Banner图管理
+ * | 产品管理
  * |------------------------------------------------------
  * | 首页
  * | 列表
@@ -11,9 +11,9 @@
 namespace app\system\controller;
 
 
-use app\system\model\Banners;
+use app\system\model\Products;
 
-class Banner extends Auth
+class Product extends Auth
 {
     /* ========== 初始化 ========== */
     public function _initialize()
@@ -28,12 +28,6 @@ class Banner extends Auth
         /* ********** 查询条件 ********** */
         $datas=[];
         $where=[];
-        /* ++++++++++ 类型 ++++++++++ */
-        $type=input('type');
-        if(is_numeric($type)){
-            $where['type']=$type;
-            $datas['type']=$type;
-        }
         /* ++++++++++ 排序 ++++++++++ */
         $ordername=input('ordername');
         $ordername=$ordername?$ordername:'id';
@@ -49,9 +43,9 @@ class Banner extends Auth
         $display_num=$display_num?$display_num:config('paginate.list_rows');
         $datas['display_num']=$display_num;
 
-        $banners=Banners::where($where)->order([$ordername=>$orderby])->paginate($display_num);
+        $products=Products::where($where)->order([$ordername=>$orderby])->paginate($display_num);
 
-        $datas['banner']=$banners;
+        $datas['product']=$products;
 
         $this->assign($datas);
 
@@ -60,18 +54,14 @@ class Banner extends Auth
 
     /* ========== 添加 ========== */
     public function add(){
-        $model=new Banners();
+        $model=new Products();
         if(request()->isPost()){
             $datas=input();
             $rules=[
-                'img'=>'require',
-                'url'=>'require',
-                'type'=>'require'
+                'title'=>'require'
             ];
             $msg=[
-                'img.require'=>'图片不能为空',
-                'url.require'=>'跳转地址不能为空',
-                'type.require'=>'类型不能为空'
+                'title.require'=>'产品名称不能为空',
             ];
             $result=$this->validate($datas,$rules,$msg);
             if(true !== $result){
@@ -95,18 +85,14 @@ class Banner extends Auth
         if(!$id){
             return $this->error('至少选择一项','');
         }
-        $model=new Banners();
+        $model=new Products();
         if(request()->isPost()){
             $datas=input();
             $rules=[
-                'img'=>'require',
-                'url'=>'require',
-                'type'=>'require'
+                'title'=>'require'
             ];
             $msg=[
-                'img.require'=>'图片不能为空',
-                'url.require'=>'跳转地址不能为空',
-                'type.require'=>'类型不能为空'
+                'title.require'=>'产品名称不能为空',
             ];
 
             $result=$this->validate($datas,$rules,$msg);
@@ -121,7 +107,7 @@ class Banner extends Auth
                 return $this->error('修改失败');
             }
         }else{
-            $infos=Banners::find($id);
+            $infos=Products::find($id);
             if(!$infos){
                 return $this->error('数据不存在');
             }
@@ -142,14 +128,11 @@ class Banner extends Auth
         if(empty($ids)){
             return $this->error('至少选择一项');
         }
-        $res=Banners::whereIn('id',$ids)->delete(true);
+        $res=Products::whereIn('id',$ids)->delete(true);
         if($res){
             return $this->success('删除成功','');
         }else{
             return $this->error('删除失败！');
         }
     }
-
-
-
 }

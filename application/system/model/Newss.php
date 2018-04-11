@@ -1,14 +1,14 @@
 <?php
 /* |------------------------------------------------------
- * | Banner管理 模型
+ * | 新闻管理 模型
  * |------------------------------------------------------
  * */
 namespace app\system\model;
 use think\Model;
 
-class Banners extends Model
+class Newss extends Model
 {
-    protected $table='banner';
+    protected $table='news';
     protected $pk='id';
     protected $createTime='create_at';
     protected $updateTime='update_at';
@@ -18,11 +18,4 @@ class Banners extends Model
     protected $type = [
 
     ];
-
-    public function getTypeAttr($value)
-    {
-        $type = [1=>'首页轮播图',2=>'首页Banner图'];
-        return $type[$value];
-    }
-
 }
