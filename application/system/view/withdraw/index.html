@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>系统用户|后台管理系统</title>
+    {include file="public/head" /}
+
+</head>
+<body>
+<h4>用户管理</h4>
+<div class="toolsBar">
+    <!--fgf为工具栏分隔符，刷新没有，离开都有。中间工具每一类第一个添加fgf-->
+    <ul>
+        <li>
+            <a href="{:url('index')}">
+                <img src="__STATIC__/system/img/arrow_refresh.png"/>
+                重置</a>
+        </li>
+        <li class="fgf" onclick="layerPage('查询',$('#search'),'700','300')" >
+            <img src="__STATIC__/system/img/page_white_magnify.png"/>
+            查询
+        </li>
+        <li class="fgf js-ajax-form-btn" data-form="js-ajax-form" data-action="{:url('review')}">
+            <img src="__STATIC__/system/img/checked.png"/>
+            审核
+        </li>
+        <li class="fgf js-ajax-form-btn" data-form="js-ajax-form" data-action="{:url('handle')}">
+            <img src="__STATIC__/system/img/recycle.png"/>
+            提现
+        </li>
+    </ul>
+</div>
+<form action="{:url('status')}" method="post" id="js-ajax-form">
+    <div class="tableCon">
+        <em class="xian"></em>
+        <table class="table" border="0" >
+            <tbody>
+            <tr class="noSelect">
+                <th class="tc" width="35px">
+                    <input class="va_m" type="checkbox" name="" id="allCheck" value="" data-falg="allCheck" onclick="checkBoxOp(this)"/>
+                </th>
+                <th>ID</th>
+                <th>用户</th>
+                <th>金额</th>
+                <th>申请时间</th>
+                <th>提现说明</th>
+                <th>银行卡号</th>
+                <th>提现进度</th>
+                <th>操作</th>
+            </tr>
+            {notempty name='list'}
+            {volist name="list" id="v"}
+            <tr>
+                <td>
+                    <input class="va_m" type="checkbox" name="ids[]" value="{$v['id']}" onclick="checkBoxOp(this)" id="check-{$v['id']}"/>
+                </td>
+                <td>{$v['id']}</td>
+                <td>{$v.user_name}</td>
+                <td>{$v.amount|number_format=2}</td>
+                <td>{$v.apply_time}</td>
+                <td>{$v.info}</td>
+                <td>{$v.card_number}</td>
+                <td>
+                    {switch name='v.status'}
+                        {case value='0'}待审核{/case}
+                        {case value='1'}待审核{/case}
+                        {case value='2'}已提现{/case}
+                    {/switch}
+                </td>
+                <td>
+                    <button type="button" data-action="{:url('delete',['ids'=>$v.id])}" class="btn js-ajax-form-btn">删除</button>
+                </td>
+            </tr>
+            {/volist}
+            {else/}
+            <tr><td colspan="10" style="color: red" align="center">暂无数据</td></tr>
+            {/notempty}
+
+            </tbody>
+        </table>
+    </div>
+</form>
+
+<div class="pageCon">
+    {$list->render()}
+</div>
+<!-- 查询 -->
+<div id="search" class="layerCon bg_f hide">
+    <form action="{:url('index')}" method="post" id="search-form">
+        <table class="layerTable">
+            <tr class="h50">
+                <td>用户名：</td>
+                <td><input type="text" name="user_name" id="user_name" value="{$user_name?:''}" placeholder="请输入用户名"/></td>
+            </tr>
+            <tr class="h50">
+                <td>状态：</td>
+                <td>
+                    <select name="status" id="status">
+                        <option value="">--全部--</option>
+                        <option value="0" {if condition="isset($status) and $status==0"}selected{/if}>--待审核--</option>
+                        <option value="1" {if condition="isset($status) and $status==1"}selected{/if}>--待提现--</option>
+                        <option value="2" {if condition="isset($status) and $status==2"}selected{/if}>--已提现--</option>
+                    </select>
+                </td>
+            </tr>
+            <tr class="h50">
+                <td>每页条数：</td>
+                <td>
+                    <select name="display_num" id="display_num">
+                        {volist name="nums" id="num"}
+                        <option value="{$num}" {if condition="isset($display_num) and $display_num==$num"}selected{/if}>--{$num}--</option>
+                        {/volist}
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <div class="layerBtns">
+            <button class="btn" type="submit">查询</button>
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/system/js/ajax-submit.js" type="text/javascript" charset="utf-8"></script>
+<script>
+
+    $(function () {
+        $('input[type=text]').on('change',function () {
+            var id=$(this).data('id');
+            $('#check-'+id).attr('checked',true);
+        }) ;
+
+        $('.pageCon').find('a').on('click',function () {
+            $('#search-form').attr('action',$(this).attr('href')).submit();
+            return false;
+        });
+    });
+
+</script>
+</body>
+</html>

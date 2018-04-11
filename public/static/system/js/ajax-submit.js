@@ -1,4 +1,3 @@
-;
 $(function () {
     /* 异步提交登录 */
     $('.js-ajax-login').on('click',function () {
@@ -92,7 +91,7 @@ function js_ajax_form_action(btn,url,data,msg,is_layer) {
         },
         success:function (data) {
             btn.data("loading",false).prop('disabled',false).removeClass('disabled');
-            layer.msg(data.msg,function () {});
+            layer.msg(data.msg,{time:3000});
             $('input[name=name]').focus();
             if(data.url){
                 if(is_layer){
