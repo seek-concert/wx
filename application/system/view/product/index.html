@@ -2,12 +2,12 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Banner管理|后台管理系统</title>
+    <title>产品管理|后台管理系统</title>
     {include file="public/head" /}
 
 </head>
 <body>
-<h4>图片管理</h4>
+<h4>产品管理</h4>
 <div class="toolsBar">
     <!--fgf为工具栏分隔符，刷新没有，离开都有。中间工具每一类第一个添加fgf-->
     <ul>
@@ -20,7 +20,7 @@
             <img src="__STATIC__/system/img/page_white_magnify.png"/>
             查询
         </li>
-        <li class="fgf" onclick="layerIfWindow('添加Banner图','{:url('add')}','700','350')">
+        <li class="fgf" onclick="layerIfWindow('添加产品','{:url('add')}','700','550')">
             <img src="__STATIC__/system/img/add.png"/>
             添加
         </li>
@@ -40,20 +40,20 @@
                     <input class="va_m" type="checkbox" name="" id="allCheck" value="" data-falg="allCheck" onclick="checkBoxOp(this)"/>
                 </th>
                 <th>ID</th>
-                <th>图片</th>
-                <th>类型</th>
-                <th>跳转地址</th>
+                <th>产品名称</th>
+                <th>产品价格</th>
+                <th>产品销量</th>
                 <th>操作</th>
             </tr>
-            {volist name="banner" id="infos"}
+            {volist name="product" id="infos"}
             <tr>
                 <td>
                     <input class="va_m" type="checkbox" name="ids[]" value="{$infos->id}" onclick="checkBoxOp(this)" id="check-{$infos->id}"/>
                 </td>
                 <td>{$infos->id}</td>
-                <td><img src="{$infos->img}" width="50px" height="50px" alt="图片资源丢失"></td>
-                <td>{$infos->type}</td>
-                <td>{$infos->url}</td>
+                <td>{$infos->title}</td>
+                <td>{$infos->price}</td>
+                <td>{$infos->sales}</td>
                 <td>
                     <button type="button" class="btn" onclick="layerIfWindow('详细信息',	'{:url('edit',['id'=>$infos->id])}','','450')" >详细信息</button>
                     <button type="button" data-action="{:url('del',['ids'=>$infos->id])}" class="btn js-ajax-form-btn">删除</button>
@@ -65,22 +65,15 @@
     </div>
 </form>
 <div class="pageCon">
-    {$banner->render()}
+    {$product->render()}
 </div>
 <!-- 查询 -->
 <div id="search" class="layerCon bg_f hide">
     <form action="{:url('index')}" method="post" id="search-form">
         <table class="layerTable">
             <tr class="h50">
-                <td>图片类型：</td>
-                <td>
-                    <select name="type" id="type">
-                        <option value="1" {if condition="isset($type) and $type==1"}selected{/if}>--首页轮播图--</option>
-                        <option value="2" {if condition="isset($type) and $type==2"}selected{/if}>--首页Banner图--</option>
-                    </select>
-                </td>
                 <td>每页条数：</td>
-                <td>
+                <td colspan="3">
                     <select name="display_num" id="display_num">
                         {volist name="nums" id="num"}
                         <option value="{$num}" {if condition="isset($display_num) and $display_num==$num"}selected{/if}>--{$num}--</option>
