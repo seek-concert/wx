@@ -25,13 +25,17 @@
                 <td>网站标题：</td>
                 <td colspan="3"><input type="text" name="title" id="title" value="{:isset($infos)?$infos->title:''}" placeholder="请输入网站标题" /></td>
             </tr>
-            <!--<tr class="h50">-->
-                <!--<td>产品描述：</td>-->
-                <!--<td colspan="3"><textarea name="product" id="product" placeholder="请输入产品描述" >{:isset($infos)?$infos->product:''}</textarea></td>-->
-            <!--</tr>-->
+            <tr class="h50">
+                <td>产品描述：</td>
+                <td colspan="3"><textarea name="product" id="product" placeholder="请输入产品描述" >{:isset($infos->product)?$infos->product:''}</textarea></td>
+            </tr>
+            <tr class="h50">
+                <td>优惠福利：</td>
+                <td colspan="3"><textarea name="welfare" id="welfare" placeholder="请输入优惠福利" >{:isset($infos->welfare)?$infos->welfare:''}</textarea></td>
+            </tr>
             <tr class="h50">
                 <td>公司简介：</td>
-                <td colspan="3"><textarea name="company" id="company" placeholder="请输入公司简介" >{:isset($infos)?$infos->company:''}</textarea></td>
+                <td colspan="3"><textarea name="company" id="company" placeholder="请输入公司简介" >{:isset($infos->company)?$infos->company:''}</textarea></td>
             </tr>
             <!--<tr class="h50">-->
                 <!--<td>LOGO：</td>-->
@@ -126,6 +130,30 @@
     /*=======富文本======*/
     KindEditor.ready(function(K) {
         window.editor = K.create('#product',{
+            width : '100%',
+            minHeight:'300',
+            uploadJson : upload_url,
+            fileManagerJson : filemanager_url,
+            allowFileManager : true,
+            items:['source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
+                'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+                'superscript', 'clearhtml', 'quickformat', 'selectall', '/',
+                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
+                'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+                'anchor', 'link', 'unlink', '|', 'about'],
+            afterBlur:function () {
+                editor.sync();
+            },
+            autoHeightMode : true,
+            afterCreate : function() {
+                this.loadPlugin('autoheight');
+            }
+        });
+    });
+    KindEditor.ready(function(K) {
+        window.editor = K.create('#welfare',{
             width : '100%',
             minHeight:'300',
             uploadJson : upload_url,
