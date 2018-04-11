@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>购买列表|后台管理系统</title>
+    {include file="public/head" /}
+    <link rel="stylesheet" href="__STATIC__/system/lightbox/css/jquery.lightbox-0.5.css" media="all">
+    <script src="__STATIC__/system/lightbox/js/jquery.lightbox-0.5.min.js?ver={:date('ymd')}"></script>
+</head>
+<body>
+<h4>用户管理</h4>
+<div class="toolsBar">
+    <!--fgf为工具栏分隔符，刷新没有，离开都有。中间工具每一类第一个添加fgf-->
+    <ul>
+        <li>
+            <a href="{:url('index')}">
+                <img src="__STATIC__/system/img/arrow_refresh.png"/>
+                重置</a>
+        </li>
+        <li class="fgf" onclick="layerPage('查询',$('#search'),'700','300')" >
+            <img src="__STATIC__/system/img/page_white_magnify.png"/>
+            查询
+        </li>
+        <li class="fgf js-ajax-form-btn" data-form="js-ajax-form" data-action="{:url('delete')}" data-notice="确定要删除吗？">
+            <img src="__STATIC__/system/img/broom.png"/>
+            删除
+        </li>
+    </ul>
+</div>
+<form action="{:url('status')}" method="post" id="js-ajax-form">
+    <div class="tableCon">
+        <em class="xian"></em>
+        <table class="table" border="0" >
+            <tbody>
+            <tr class="noSelect">
+                <th class="tc" width="35px">
+                    <input class="va_m" type="checkbox" name="" id="allCheck" value="" data-falg="allCheck" onclick="checkBoxOp(this)"/>
+                </th>
+                <th>ID</th>
+                <th>用户</th>
+                <th>头像</th>
+                <th>购买金额</th>
+                <th>消费金额</th>
+                <th>剩余金额</th>
+                <th>返利金额</th>
+                <th>分销上级</th>
+                <th>上级返利</th>
+                <th>创建时间</th>
+                <th>修改时间</th>
+                <th>操作</th>
+            </tr>
+            {volist name="list" id="v"}
+            <tr>
+                <td>
+                    <input class="va_m" type="checkbox" name="ids[]" value="{$v->id}" onclick="checkBoxOp(this)" id="check-{$v->id}"/>
+                </td>
+                <td>{$v->id}</td>
+                <td>{$v->user_name}</td>
+                <td>
+                    {notempty name='v->avatar'}
+                    <a class="lightbox" title="" href="{$v->avatar}">
+                        <img src="{$v->avatar}" width=30px height=30px />
+                    </a>
+                    {else/}
+                    <span>暂无</span>
+                    {/notempty}
+                </td>
+                <td>{$v->rebate_user}</td>
+                <td>{$v->total|number_format=2}</td>
+                <td>{$v->consumed|number_format=2}</td>
+                <td>{$v->remaining|number_format=2}</td>
+                <td>{$v->total|number_format=2}</td>
+                <td>{$v->rebate_amount|number_format=2}</td>
+                <td>{$consumer->cashed|number_format=2}</td>
+                <td>{$consumer->left|number_format=2}</td>
+                <td>{$consumer->created_at}</td>
+                <td>{$consumer->updated_at}</td>
+                <td>
+                    <button type="button" class="btn" onclick="layerIfWindow('用户信息',	'{:url('detail',['id'=>$consumer->id])}','','300')" >用户信息</button>
+                    <button type="button" class="btn" onclick="layerIfWindow('下级分销',	'{:url('distribution',['id'=>$consumer->id])}','','600')">下级分销</button>
+                    <button type="button" data-action="{:url('delete',['ids'=>$consumer->id])}" class="btn js-ajax-form-btn">删除</button>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+    </div>
+</form>
+<div class="pageCon">
+    {$consumers->render()}
+</div>
+<!-- 查询 -->
+<div id="search" class="layerCon bg_f hide">
+    <form action="{:url('index')}" method="post" id="search-form">
+        <table class="layerTable">
+            <tr class="h50">
+                <td>用户名：</td>
+                <td colspan="3"><input type="text" name="user_name" id="user_name" value="{$user_name?:''}" placeholder="请输入用户名"/></td>
+            </tr>
+
+            <tr class="h50">
+                <td>每页条数：</td>
+                <td colspan="3">
+                    <select name="display_num" id="display_num">
+                        {volist name="nums" id="num"}
+                        <option value="{$num}" {if condition="isset($display_num) and $display_num==$num"}selected{/if}>--{$num}--</option>
+                        {/volist}
+                    </select>
+                </td>
+            </tr>
+            <tr class="h50">
+                <td>排序：</td>
+                <td>
+                    <select name="ordername" id="ordername">
+                        <option value="id">--默认--</option>
+                        <option value="created_at" {if condition="isset($ordername) and $ordername=='created_at'"}selected{/if}>--创建时间--</option>
+                        <option value="updated_at" {if condition="isset($ordername) and $ordername=='updated_at'"}selected{/if}>--更新时间--</option>
+                    </select>
+                </td>
+                <td>方式：</td>
+                <td>
+                    <select name="orderby" id="orderby">
+                        <option value="asc">--升序--</option>
+                        <option value="desc" {if condition="isset($orderby) and $orderby=='desc'"}selected{/if}>--降序--</option>
+                    </select>
+                </td>
+            </tr>
+
+        </table>
+        <div class="layerBtns">
+            <button class="btn" type="submit">查询</button>
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/system/js/ajax-submit.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    $('.lightbox').lightBox();
+    $(function () {
+        $('input[type=text]').on('change',function () {
+            var id=$(this).data('id');
+            $('#check-'+id).attr('checked',true);
+        }) ;
+
+        $('.pageCon').find('a').on('click',function () {
+            $('#search-form').attr('action',$(this).attr('href')).submit();
+            return false;
+        });
+    });
+
+</script>
+</body>
+</html>
