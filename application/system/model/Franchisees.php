@@ -25,4 +25,14 @@ class Franchisees extends Model{
         }
     }
 
+    /*获取标签属性*/
+    public function getMarkAttr($key=null){
+        $array=[0=>'代理商',1=>'门店'];
+        if(is_numeric($key) && in_array($key,[0,1])){
+            return $array[$key];
+        }else{
+            return $array;
+        }
+    }
+
 }

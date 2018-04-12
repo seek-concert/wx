@@ -7,6 +7,8 @@ namespace app\system\controller;
 
 use app\system\model\Consumers;
 use app\system\model\Cards;
+use app\system\model\Consumes;
+use think\Request;
 use think\Db;
 
 class Consumer extends Auth{
@@ -47,7 +49,6 @@ class Consumer extends Auth{
         $datas['display_num']=$display_num;
 
         $model=new Consumers();
-
         $consumers=$model
             ->where($where)
             ->order([$ordername=>$orderby])
@@ -136,7 +137,7 @@ class Consumer extends Auth{
             return $this->error('错误操作');
         }
         $subQuery = Db::table('card')
-            ->where('rebate_consumer_id',$id)
+            ->where('superior_id',$id)
             ->field('sum(superior_amount) as total_rebate,consumer_id,sum(total) as total')
             ->group('consumer_id')
             ->buildSql();
@@ -152,5 +153,47 @@ class Consumer extends Auth{
         return view();
     }
 
+    /*绑定加盟商*/
+    public function bind(){
+        $id=input('id');
+        if(!$id)    return $this->error('错误操作');
+        $model=Consumers::get($id);
 
+        if($this->request->isPost()){
+            if(!is_numeric(input('franchisee_id')))     $this->error('请选择绑定加盟商');
+            $model->franchisee_id=input('franchisee_id');
+            $model->isUpdate(true)->save();
+            if($model !== false){
+                return $this->success('绑定成功','');
+            }else{
+                return $this->error('绑定失败');
+            }
+        }
+        $franchisee_list=Db::table('franchisee')->field('id,name')->select();
+        $this->assign('franchisee_list',$franchisee_list);
+        $this->assign('data',$model);
+        return $this->fetch();
+    }
+
+    /*解除绑定*/
+    public function release(){
+        $inputs=input();
+        $ids=isset($inputs['ids'])?$inputs['ids']:'';
+
+        if(empty($ids)){
+            return $this->error('至少选择一项');
+        }
+
+        $res=Db::table('consumer')->where('id','in',$ids)->setField('franchisee_id', 0);
+
+      /*  $model=new Consumers();
+        $res=$model->save(['franchisee_id'=>0],function ($query,$ids){
+            $query->where('id','in',$ids);
+        });*/
+        if($res){
+            return $this->success('操作成功','');
+        }else{
+            return $this->error('操作失败');
+        }
+    }
 }
