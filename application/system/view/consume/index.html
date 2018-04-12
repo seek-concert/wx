@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>消费者|后台管理系统</title>
+    <title>购买列表|后台管理系统</title>
     {include file="public/head" /}
     <link rel="stylesheet" href="__STATIC__/system/lightbox/css/jquery.lightbox-0.5.css" media="all">
     <script src="__STATIC__/system/lightbox/js/jquery.lightbox-0.5.min.js?ver={:date('ymd')}"></script>
@@ -21,10 +21,6 @@
             <img src="__STATIC__/system/img/page_white_magnify.png"/>
             查询
         </li>
-        <li class="fgf js-ajax-form-btn" data-form="js-ajax-form" data-action="{:url('release')}" data-notice="确定要解除绑定吗？">
-            <img src="__STATIC__/system/img/recycle.png"/>
-            解除绑定
-        </li>
         <li class="fgf js-ajax-form-btn" data-form="js-ajax-form" data-action="{:url('delete')}" data-notice="确定要删除吗？">
             <img src="__STATIC__/system/img/broom.png"/>
             删除
@@ -41,55 +37,42 @@
                     <input class="va_m" type="checkbox" name="" id="allCheck" value="" data-falg="allCheck" onclick="checkBoxOp(this)"/>
                 </th>
                 <th>ID</th>
-                <th>昵称</th>
-                <th>头像</th>
-                <th>分销上级</th>
-                <th>返现总额</th>
-                <th>已提现金额</th>
-                <th>待返现金额</th>
-                <th>加盟商</th>
+                <th>用户</th>
+                <th>消费金额</th>
+                <th>代理商</th>
                 <th>创建时间</th>
                 <th>修改时间</th>
                 <th>操作</th>
             </tr>
-            {volist name="consumers" id="consumer"}
+            {notempty name='list'}
+            {volist name="list" id="v"}
             <tr>
                 <td>
-                    <input class="va_m" type="checkbox" name="ids[]" value="{$consumer->id}" onclick="checkBoxOp(this)" id="check-{$consumer->id}"/>
+                    <input class="va_m" type="checkbox" name="ids[]" value="{$v.id}" onclick="checkBoxOp(this)" id="check-{$v.id}"/>
                 </td>
-                <td>{$consumer->id}</td>
-                <td>{$consumer->user_name}</td>
+                <td>{$v->id}</td>
+                <td>{$v->consumer->user_name}</td>
+                <td>{$v->amount|number_format=2}</td>
 
+                <td>{$v->franchisee->name}</td>
+
+                <td>{$v->created_at}</td>
+                <td>{$v->updated_at}</td>
                 <td>
-                    {notempty name='consumer->avatar'}
-                    <a class="lightbox" title="" href="{$consumer->avatar}">
-                        <img src="{$consumer->avatar}" width=30px height=30px />
-                    </a>
-                    {else/}
-                    <span>暂无</span>
-                    {/notempty}
-                </td>
-                <td>{notempty name='consumer->superior'}{$consumer->superior->user_name}{else/}无{/notempty}</td>
-                <td>{$consumer->total|number_format=2}</td>
-                <td>{$consumer->cashed|number_format=2}</td>
-                <td>{$consumer->left|number_format=2}</td>
-                <td>{notempty name='consumer->franchisee'}{$consumer->franchisee->name}{else/}无{/notempty}</td>
-                <td>{$consumer->created_at}</td>
-                <td>{$consumer->updated_at}</td>
-                <td>
-                    <button type="button" class="btn" onclick="layerIfWindow('用户信息',	'{:url('detail',['id'=>$consumer->id])}','','300')" >用户信息</button>
-                    <button type="button" class="btn" onclick="layerIfWindow('下级分销',	'{:url('distribution',['id'=>$consumer->id])}','','600')">下级分销</button>
-                    <button type="button" class="btn" onclick="layerIfWindow('绑定加盟商',	'{:url('bind',['id'=>$consumer->id])}','','300')">绑定加盟商</button>
-                    <button type="button" data-action="{:url('delete',['ids'=>$consumer->id])}" class="btn js-ajax-form-btn">删除</button>
+                    <button type="button" data-action="{:url('delete',['ids'=>$v.id])}" class="btn js-ajax-form-btn">删除</button>
                 </td>
             </tr>
             {/volist}
+            {else/}
+            <tr><td colspan="20" style="color: red" align="center">暂无数据</td></tr>
+            {/notempty}
+
             </tbody>
         </table>
     </div>
 </form>
 <div class="pageCon">
-    {$consumers->render()}
+    {$list->render()}
 </div>
 <!-- 查询 -->
 <div id="search" class="layerCon bg_f hide">
@@ -97,9 +80,17 @@
         <table class="layerTable">
             <tr class="h50">
                 <td>用户名：</td>
-                <td colspan="3"><input type="text" name="user_name" id="user_name" value="{$user_name?:''}" placeholder="请输入用户名"/></td>
+                <td ><input type="text" name="user_name" id="user_name" value="{$user_name?:''}" placeholder="请输入用户名"/></td>
+                <td>代理商：</td>
+                <td >
+                    <select name="franchisee" id="franchisee">
+                        <option value="id">--默认--</option>
+                        {volist name="franchisee_list" id="v"}
+                        <option value="{$v['id']}" {if condition="isset($franchisee) and $franchisee==$v['id']"}selected{/if}>--{$v['name']}--</option>
+                        {/volist}
+                    </select>
+                </td>
             </tr>
-
             <tr class="h50">
                 <td>每页条数：</td>
                 <td colspan="3">

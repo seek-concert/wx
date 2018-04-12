@@ -16,8 +16,8 @@ class  BankCards extends Model{
     protected $autoWriteTimestamp = true;
     protected $field=true;
 
-    /*关联到用户*/
-//    public function user(){
-//        return $this->hasOne('Consumer')->field('id,user_name');
-//    }
+    /*关联到消费者*/
+    public function consumer(){
+        return $this->belongsTo('Consumers');
+    }
 }

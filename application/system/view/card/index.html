@@ -49,45 +49,46 @@
                 <th>修改时间</th>
                 <th>操作</th>
             </tr>
+            {notempty name='list'}
             {volist name="list" id="v"}
             <tr>
                 <td>
-                    <input class="va_m" type="checkbox" name="ids[]" value="{$v->id}" onclick="checkBoxOp(this)" id="check-{$v->id}"/>
+                    <input class="va_m" type="checkbox" name="ids[]" value="{$v.id}" onclick="checkBoxOp(this)" id="check-{$v.id}"/>
                 </td>
-                <td>{$v->id}</td>
-                <td>{$v->user_name}</td>
+                <td>{$v.id}</td>
+                <td>{$v.user_name}</td>
                 <td>
-                    {notempty name='v->avatar'}
-                    <a class="lightbox" title="" href="{$v->avatar}">
-                        <img src="{$v->avatar}" width=30px height=30px />
+                    {notempty name='v.avatar'}
+                    <a class="lightbox" title="" href="{$v.avatar}">
+                        <img src="{$v.avatar}" width=30px height=30px />
                     </a>
                     {else/}
                     <span>暂无</span>
                     {/notempty}
                 </td>
-                <td>{$v->rebate_user}</td>
-                <td>{$v->total|number_format=2}</td>
-                <td>{$v->consumed|number_format=2}</td>
-                <td>{$v->remaining|number_format=2}</td>
-                <td>{$v->total|number_format=2}</td>
-                <td>{$v->rebate_amount|number_format=2}</td>
-                <td>{$consumer->cashed|number_format=2}</td>
-                <td>{$consumer->left|number_format=2}</td>
-                <td>{$consumer->created_at}</td>
-                <td>{$consumer->updated_at}</td>
+                <td>{$v.total|number_format=2}</td>
+                <td>{$v.consumed|number_format=2}</td>
+                <td>{$v.remaining|number_format=2}</td>
+                <td>{$v.rebate|number_format=2}</td>
+                <td>{$v.superior_name}</td>
+                <td>{$v.superior_amount|number_format=2}</td>
+                <td>{$v.created_at|date='Y-m-d H:i:s',###}</td>
+                <td>{$v.updated_at|date='Y-m-d H:i:s',###}</td>
                 <td>
-                    <button type="button" class="btn" onclick="layerIfWindow('用户信息',	'{:url('detail',['id'=>$consumer->id])}','','300')" >用户信息</button>
-                    <button type="button" class="btn" onclick="layerIfWindow('下级分销',	'{:url('distribution',['id'=>$consumer->id])}','','600')">下级分销</button>
-                    <button type="button" data-action="{:url('delete',['ids'=>$consumer->id])}" class="btn js-ajax-form-btn">删除</button>
+                    <button type="button" data-action="{:url('delete',['ids'=>$v.id])}" class="btn js-ajax-form-btn">删除</button>
                 </td>
             </tr>
             {/volist}
+            {else/}
+            <tr><td colspan="20" style="color: red" align="center">暂无数据</td></tr>
+            {/notempty}
+
             </tbody>
         </table>
     </div>
 </form>
 <div class="pageCon">
-    {$consumers->render()}
+    {$list->render()}
 </div>
 <!-- 查询 -->
 <div id="search" class="layerCon bg_f hide">

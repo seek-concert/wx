@@ -49,6 +49,7 @@
                 </th>
                 <th>ID</th>
                 <th>加盟商名称</th>
+                <th>标签</th>
                 <th>地址</th>
                 <th>联系方式</th>
                 <th>授权状态</th>
@@ -64,6 +65,7 @@
                 </td>
                 <td>{$v->id}</td>
                 <td>{$v->name}</td>
+                <td>{$v->mark}</td>
                 <td>{$v->address}</td>
                 <td>{$v->tel}</td>
                 <td>{$v->is_authorized}</td>
@@ -93,7 +95,7 @@
         <table class="layerTable">
             <tr class="h50">
                 <td>用户名：</td>
-                <td><input type="text" name="user_name" id="user_name" value="{$user_name?:''}" placeholder="请输入用户名"/></td>
+                <td colspan="3"><input type="text" name="user_name" id="user_name" value="{$user_name?:''}" placeholder="请输入用户名"/></td>
             </tr>
             <tr class="h50">
                 <td>状态：</td>
@@ -104,10 +106,35 @@
                         <option value="1" {if condition="isset($is_authorized) and $is_authorized==1"}selected{/if}>--已授权--</option>
                     </select>
                 </td>
+                <td>标签：</td>
+                <td>
+                    <select name="mark" id="mark">
+                        <option value="">--全部--</option>
+                        <option value="0" {if condition="isset($mark) and $is_authorized==0"}selected{/if}>--代理商--</option>
+                        <option value="1" {if condition="isset($mark) and $is_authorized==1"}selected{/if}>--门店--</option>
+                    </select>
+                </td>
+            </tr>
+            <tr class="h50">
+                <td>排序：</td>
+                <td >
+                    <select name="ordername" id="ordername">
+                        <option value="id">--默认--</option>
+                        <option value="created_at" {if condition="isset($ordername) and $ordername=='created_at'"}selected{/if}>--创建时间--</option>
+                        <option value="updated_at" {if condition="isset($ordername) and $ordername=='updated_at'"}selected{/if}>--更新时间--</option>
+                    </select>
+                </td>
+                <td>方式：</td>
+                <td>
+                    <select name="orderby" id="orderby">
+                        <option value="asc">--升序--</option>
+                        <option value="desc" {if condition="isset($orderby) and $orderby=='desc'"}selected{/if}>--降序--</option>
+                    </select>
+                </td>
             </tr>
             <tr class="h50">
                 <td>每页条数：</td>
-                <td>
+                <td colspan="3">
                     <select name="display_num" id="display_num">
                         {volist name="nums" id="num"}
                         <option value="{$num}" {if condition="isset($display_num) and $display_num==$num"}selected{/if}>--{$num}--</option>

@@ -30,11 +30,11 @@ class  Withdraws extends Model{
 
     /*关联到银行卡*/
     public function bank(){
-        return $this->belongsTo('BankCards','bank_id');
+        return $this->belongsTo('BankCards');
     }
 
     /*关联到用户*/
-//    public function user(){
-//        return $this->hasOne('Consumer')->field('id,user_name');
-//    }
+    public function consumer(){
+        return $this->hasOne('Consumer');
+    }
 }
