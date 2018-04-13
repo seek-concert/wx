@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>下架分销|后台管理系统</title>
+    {include file="public/head" /}
+
+    <link rel="stylesheet" type="text/css" href="__STATIC__/system/css/jquery.treetable.theme.default.css"/>
+    <script src="__STATIC__/system/js/jquery.treetable.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="__STATIC__/system/lightbox/css/jquery.lightbox-0.5.css" media="all">
+    <script src="__STATIC__/system/lightbox/js/jquery.lightbox-0.5.min.js?ver={:date('ymd')}"></script>
+</head>
+<body>
+<div class="layerCon bg_f">
+    <table class="layerTable" border="1px">
+
+        <tr class="h50">
+            <th>ID</th>
+            <th>用户</th>
+            <th>头像</th>
+            <th>消费金额</th>
+            <th>返利金额</th>
+            <th>消费时间</th>
+        </tr>
+
+        {notempty name='list'}
+        {volist name='list' id='v'}
+        <tr class="h50">
+            <td align="center">{$v.id}</td>
+            <td align="center">{$v.user_name}</td>
+            <td align="center">
+                {notempty name='consumer.avatar'}
+                <a class="lightbox" title="" href="{$v.avatar}">
+                    <img src="{$v.avatar}" width=30px height=30px />
+                </a>
+                {else/}
+                暂无
+                {/notempty}
+            </td>
+            <td align="center">{$v.total|number_format=2}</td>
+            <td align="center">{$v.total_rebate|number_format=2}</td>
+            <td align="center">{$v.created_at|date='Y-m-d H:i:s',###}</td>
+        </tr>
+
+        {/volist}
+        {else/}
+        <tr class="h50"><td colspan="6" style="color: red" align="center">暂无数据</td></tr>
+        {/notempty}
+    </table>
+    <div class="pageCon" style="margin-top: 10px">
+        {$list->render()}
+    </div>
+</div>
+
+
+<script>
+    $('.lightbox').lightBox();
+</script>
+</body>
+</html>

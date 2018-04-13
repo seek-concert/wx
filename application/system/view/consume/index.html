@@ -2,12 +2,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>加盟商|后台管理系统</title>
+    <title>购买列表|后台管理系统</title>
     {include file="public/head" /}
-
+    <link rel="stylesheet" href="__STATIC__/system/lightbox/css/jquery.lightbox-0.5.css" media="all">
+    <script src="__STATIC__/system/lightbox/js/jquery.lightbox-0.5.min.js?ver={:date('ymd')}"></script>
 </head>
 <body>
-<h4>加盟商管理</h4>
+<h4>用户管理</h4>
 <div class="toolsBar">
     <!--fgf为工具栏分隔符，刷新没有，离开都有。中间工具每一类第一个添加fgf-->
     <ul>
@@ -16,23 +17,11 @@
                 <img src="__STATIC__/system/img/arrow_refresh.png"/>
                 重置</a>
         </li>
-        <li class="fgf" onclick="layerIfWindow('添加加盟商','{:url('add')}','','300')">
-            <img src="__STATIC__/system/img/add.png"/>
-            添加
-        </li>
         <li class="fgf" onclick="layerPage('查询',$('#search'),'700','300')" >
             <img src="__STATIC__/system/img/page_white_magnify.png"/>
             查询
         </li>
-        <li class="fgf js-ajax-form-btn" data-form="js-ajax-form" data-action="{:url('authorize',array('is_authorized'=>1))}">
-            <img src="__STATIC__/system/img/checked.png"/>
-            授权
-        </li>
-        <li class="fgf js-ajax-form-btn" data-form="js-ajax-form" data-action="{:url('authorize',array('is_authorized'=>0))}">
-            <img src="__STATIC__/system/img/recycle.png"/>
-            撤销授权
-        </li>
-        <li class="fgf js-ajax-form-btn" data-form="js-ajax-form" data-action="{:url('delete')}">
+        <li class="fgf js-ajax-form-btn" data-form="js-ajax-form" data-action="{:url('delete')}" data-notice="确定要删除吗？">
             <img src="__STATIC__/system/img/broom.png"/>
             删除
         </li>
@@ -48,44 +37,40 @@
                     <input class="va_m" type="checkbox" name="" id="allCheck" value="" data-falg="allCheck" onclick="checkBoxOp(this)"/>
                 </th>
                 <th>ID</th>
-                <th>加盟商名称</th>
-                <th>标签</th>
-                <th>地址</th>
-                <th>联系方式</th>
-                <th>授权状态</th>
+                <th>用户</th>
+                <th>消费金额</th>
+                <th>代理商</th>
                 <th>创建时间</th>
-                <th>更新时间</th>
+                <th>修改时间</th>
                 <th>操作</th>
             </tr>
             {notempty name='list'}
             {volist name="list" id="v"}
             <tr>
                 <td>
-                    <input class="va_m" type="checkbox" name="ids[]" value="{$v['id']}" onclick="checkBoxOp(this)" id="check-{$v['id']}"/>
+                    <input class="va_m" type="checkbox" name="ids[]" value="{$v.id}" onclick="checkBoxOp(this)" id="check-{$v.id}"/>
                 </td>
                 <td>{$v->id}</td>
-                <td>{$v->name}</td>
-                <td>{$v->mark}</td>
-                <td>{$v->address}</td>
-                <td>{$v->tel}</td>
-                <td>{$v->is_authorized}</td>
+                <td>{$v->consumer->user_name}</td>
+                <td>{$v->amount|number_format=2}</td>
+
+                <td>{$v->franchisee->name}</td>
+
                 <td>{$v->created_at}</td>
                 <td>{$v->updated_at}</td>
                 <td>
-                    <button type="button" class="btn" onclick="layerIfWindow('详细信息',	'{:url('detail',['id'=>$v->id])}','','300')" >详细信息</button>
-                    <button type="button" data-action="{:url('delete',['ids'=>$v->id])}" class="btn js-ajax-form-btn">删除</button>
+                    <button type="button" data-action="{:url('delete',['ids'=>$v.id])}" class="btn js-ajax-form-btn">删除</button>
                 </td>
             </tr>
             {/volist}
             {else/}
-            <tr><td colspan="10" style="color: red" align="center">暂无数据</td></tr>
+            <tr><td colspan="20" style="color: red" align="center">暂无数据</td></tr>
             {/notempty}
 
             </tbody>
         </table>
     </div>
 </form>
-
 <div class="pageCon">
     {$list->render()}
 </div>
@@ -95,29 +80,30 @@
         <table class="layerTable">
             <tr class="h50">
                 <td>用户名：</td>
-                <td colspan="3"><input type="text" name="user_name" id="user_name" value="{$user_name?:''}" placeholder="请输入用户名"/></td>
-            </tr>
-            <tr class="h50">
-                <td>状态：</td>
-                <td>
-                    <select name="is_authorized" id="is_authorized">
-                        <option value="">--全部--</option>
-                        <option value="0" {if condition="isset($is_authorized) and $is_authorized==0"}selected{/if}>--暂未授权--</option>
-                        <option value="1" {if condition="isset($is_authorized) and $is_authorized==1"}selected{/if}>--已授权--</option>
+                <td ><input type="text" name="user_name" id="user_name" value="{$user_name?:''}" placeholder="请输入用户名"/></td>
+                <td>代理商：</td>
+                <td >
+                    <select name="franchisee" id="franchisee">
+                        <option value="id">--默认--</option>
+                        {volist name="franchisee_list" id="v"}
+                        <option value="{$v['id']}" {if condition="isset($franchisee) and $franchisee==$v['id']"}selected{/if}>--{$v['name']}--</option>
+                        {/volist}
                     </select>
                 </td>
-                <td>标签：</td>
-                <td>
-                    <select name="mark" id="mark">
-                        <option value="">--全部--</option>
-                        <option value="0" {if condition="isset($mark) and $is_authorized==0"}selected{/if}>--代理商--</option>
-                        <option value="1" {if condition="isset($mark) and $is_authorized==1"}selected{/if}>--门店--</option>
+            </tr>
+            <tr class="h50">
+                <td>每页条数：</td>
+                <td colspan="3">
+                    <select name="display_num" id="display_num">
+                        {volist name="nums" id="num"}
+                        <option value="{$num}" {if condition="isset($display_num) and $display_num==$num"}selected{/if}>--{$num}--</option>
+                        {/volist}
                     </select>
                 </td>
             </tr>
             <tr class="h50">
                 <td>排序：</td>
-                <td >
+                <td>
                     <select name="ordername" id="ordername">
                         <option value="id">--默认--</option>
                         <option value="created_at" {if condition="isset($ordername) and $ordername=='created_at'"}selected{/if}>--创建时间--</option>
@@ -132,25 +118,16 @@
                     </select>
                 </td>
             </tr>
-            <tr class="h50">
-                <td>每页条数：</td>
-                <td colspan="3">
-                    <select name="display_num" id="display_num">
-                        {volist name="nums" id="num"}
-                        <option value="{$num}" {if condition="isset($display_num) and $display_num==$num"}selected{/if}>--{$num}--</option>
-                        {/volist}
-                    </select>
-                </td>
-            </tr>
+
         </table>
         <div class="layerBtns">
             <button class="btn" type="submit">查询</button>
         </div>
     </form>
 </div>
-<script src="__STATIC__/system/js/ajax-submit.js?ver={:date('ymd')}" type="text/javascript" charset="utf-8"></script>
+<script src="__STATIC__/system/js/ajax-submit.js" type="text/javascript" charset="utf-8"></script>
 <script>
-
+    $('.lightbox').lightBox();
     $(function () {
         $('input[type=text]').on('change',function () {
             var id=$(this).data('id');

@@ -1,0 +1,177 @@
+{extend name='public:base'}
+{block name='title'}个人中心{/block}
+{block name='style'}
+<style type="text/css">
+  .usercenter-main{
+    width: 100%;
+    height: 100%;
+  }
+
+  /* user-header 样式 start */
+  .user-header{
+    position: relative;
+    height: 360px;
+    width: 100%;
+    box-sizing: border-box;
+    /*border-top: 1px solid #2f2518;*/
+    /*border-bottom: 1px solid #eee;*/
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .user-header .bg{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /*height: 360px;*/
+    z-index: -1;
+    opacity: .6;
+    -webkit-filter: blur(20px);
+    filter: blur(20px);
+  }
+  .user-header .bg img{
+    height: 100%;
+    width: 100%;
+  }
+  .user-header .header-img{
+    width: 165px;
+    height: 165px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 3px solid hsla(0,0%,90%,1);
+  }
+  .user-header .header-img img{
+    height: 100%;
+    border-radius: 50%;
+  }
+  .user-header p{
+    margin-top: 25px;
+    font-size: 30px;
+    color: #fff;
+  }
+
+  /* column 样式 start */
+  .usercenter-main .column-item.share{
+    margin-top: 20px;
+    border-bottom: 1px solid #eee;
+  }
+</style>
+{/block}
+
+{block name='body'}
+<body>
+<div class="usercenter-main">
+
+  <!-- user-header img start -->
+  <div class="user-header">
+    <div class="bg">
+      <img src="__INDEX_IMG__/header_logo.jpg">
+    </div>
+    <div class="header-img">
+      <img src="__INDEX_IMG__/header_logo.jpg">
+    </div>
+    <p>时光易老i</p>
+  </div>
+
+  <!-- column start -->
+  <div class="column-list">
+    <div class="column-item">
+      <a href="{:url('coupon/coupon_center')}">
+        <div class="column-left">
+          <i class="icon iconfont icon-43"></i>
+        </div>
+        <div class="column-right">
+          <p>我的卡券</p>
+          <i class="icon iconfont icon-youjiantou1"></i>
+        </div>
+      </a>
+    </div>
+    <div class="column-item">
+      <a href="{:url('cash/cash_back')}">
+        <div class="column-left">
+          <i class="icon iconfont icon-fanxian"></i>
+        </div>
+        <div class="column-right">
+          <p>我的返现</p>
+          <i class="icon iconfont icon-youjiantou1"></i>
+        </div>
+      </a>
+    </div>
+    <div class="column-item">
+      <a href="{:url('distribution_center')}">
+        <div class="column-left">
+          <i class="icon iconfont icon-fenxiang2"></i>
+        </div>
+        <div class="column-right">
+          <p>分销中心</p>
+          <i class="icon iconfont icon-youjiantou1"></i>
+        </div>
+      </a>
+    </div>
+    <div class="column-item">
+      <a href="{:url('message/message_center')}">
+        <div class="column-left">
+          <i class="icon iconfont icon-wodexiaoxi"></i>
+        </div>
+        <div class="column-right">
+          <p>消息中心</p>
+          <i class="icon iconfont icon-youjiantou1"></i>
+        </div>
+      </a>
+    </div>
+    <!-- <div class="column-item">
+      <a href="bankcard_manager.html">
+        <div class="column-left">
+          <i class="icon iconfont icon-yinxingqia"></i>
+        </div>
+        <div class="column-right">
+          <p>银行卡管理</p>
+          <i class="icon iconfont icon-youjiantou1"></i>
+        </div>
+      </a>
+    </div> -->
+  </div>
+
+
+  <div class="column-item share">
+    <a href="javascript:;">
+      <div class="column-left">
+        <i class="icon iconfont icon-icon_share"></i>
+      </div>
+      <div class="column-right">
+        <p>二维码分享</p>
+        <i class="icon iconfont icon-youjiantou1"></i>
+      </div>
+    </a>
+  </div>
+
+  <div class="footer-margin"></div>
+  <!-- footer start -->
+  <footer>
+    <div class="foot-item">
+      <a href="{:url('index/index')}">
+        <i class="icon iconfont icon-shouye"></i>
+        <p>首页</p>
+      </a>
+    </div>
+    <div class="foot-item">
+      <a href="{:url('coupon/coupon_center')}">
+        <i class="icon iconfont icon-qiaquan"></i>
+        <p>卡券</p>
+      </a>
+    </div>
+    <div class="foot-item active">
+      <a href="javascript:;">
+        <i class="icon iconfont icon-wode"></i>
+        <p>我的</p>
+      </a>
+    </div>
+  </footer>
+</div>
+</body>
+{/block}
+

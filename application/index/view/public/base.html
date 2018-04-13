@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <title>{block name='title'}标题{/block}</title>
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name = "format-detection" content="telephone = no"/>
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no" />
+    <script>
+        var pageWidth = 750;
+        if (/Android (\d+\.\d+)/.test(navigator.userAgent)) {
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {
+                var phoneScale = parseInt(window.screen.width) / pageWidth;
+                var mtinfo = '<meta name="viewport" content="width=' + pageWidth + ', minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">'
+                document.write(mtinfo);
+            } else {
+                document.write('<meta name="viewport" content="width=' + pageWidth + ', target-densitydpi=device-dpi">');
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=' + pageWidth + ', user-scalable=no, target-densitydpi=device-dpi">');
+        }
+    </script>
+    <link rel="stylesheet" href="__INDEX_FONTS__/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="__INDEX_CSS__/reset.css">
+    <link rel="stylesheet" type="text/css" href="__INDEX_CSS__/common.css">
+    {block name='style'} {/block}
+</head>
+{block name='body'}{/block}
+{block name='script'}{/block}
+</html>

@@ -1,0 +1,167 @@
+a{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+/** 商家列表 样式 start */
+.merchants-list-container{
+  width: 710px;
+  margin: 0 auto;
+  padding-bottom: 20px;
+}
+.merchants-list-container .merchants-list-content{
+  width: 100%;
+}
+.merchants-list-container .merchants-list-content .merchants-item{
+  height: 188px;
+  width: 100%;
+  border-bottom: 1px solid #dcdcdc;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+}
+.merchants-list-container .merchants-list-content .merchants-item .merchants-logo{
+  position: relative;
+  width: 205px;
+  height: 100%;
+  /*display: flex;
+  align-items: center;
+  justify-content: center;*/
+}
+
+.merchants-list-container .merchants-list-content .merchants-item .merchants-logo img{
+  position: absolute;
+  height: 64px;
+  width: 84px;
+  top: 12%;
+  left: 0;
+}
+
+.merchants-list-container .merchants-list-content .merchants-item .merchants-info{
+  flex: 1;
+  height: 100%;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.merchants-list-container .merchants-list-content .merchants-item .merchants-info p{
+  width: 100%;
+  margin: 10px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.merchants-list-container .merchants-list-content .merchants-item .merchants-info .merchants-name{
+  font-size: 30px;
+  color: #1a1a1a;
+}
+.merchants-list-container .merchants-list-content .merchants-item .merchants-info .merchants-addr .icon{
+  font-size: 30px;
+  color: #00b952;
+}
+.merchants-list-container .merchants-list-content .merchants-item .merchants-info .merchants-tel .icon{
+  font-size: 24px;
+  color: #a6a6a6;
+}
+.merchants-list-container .merchants-list-content .merchants-item .merchants-info span{
+  color: #666;
+}
+
+
+/* usercenter colunm 样式 start */
+.column-list{
+  width: 100%;
+  height: auto;
+}
+
+.column-item{
+  height: 96px;
+  border-top: 1px solid #eee;
+  box-sizing: border-box;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.column-item:active{
+  background-color: #ccc;
+}
+.column-item a{
+  display: flex;
+  align-items: center;
+}
+.column-item .icon{
+  font-size: 47px;
+  color: #707070;
+}
+.column-item .column-left{
+  height: 100%;
+  width: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.column-item .column-right{
+  flex: 1;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+.column-item .column-right p{
+  font-size: 28px;
+  color: #333;
+}
+.column-item .column-right .icon{
+  margin-right: 30px;
+}
+.column-item:last-child{
+  border-bottom: 1px solid #eee;
+}
+
+
+/*  footer 样式 start  */
+.footer-margin{
+  height: 98px;
+  width: 100%;
+  background: #fff;
+}
+footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 98px;
+  width: 100%;
+  background: #fff;
+  box-shadow: 1px -3px 7px #fafafa; 
+  display: flex;
+  justify-content: space-around;
+}
+
+footer .foot-item{
+  display: flex;
+  flex-direction: column;
+}
+footer .foot-item a{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #8a8a8a;
+}
+footer .foot-item .icon{
+  font-size: 48px;
+}
+footer .foot-item p{
+  margin-top: 10px;
+  font-size: 24px;
+}
+
+footer .foot-item.active .icon{
+  color: #10bd5d;
+}
+footer .foot-item.active p{
+  color: #10bd5d;
+}

@@ -36,6 +36,14 @@ class Franchisee extends  Auth{
             $where['is_authorized']=$is_authorized;
             $datas['is_authorized']=$is_authorized;
         }
+
+        /*标签*/
+        $mark=input('mark');
+        if(is_numeric($mark) && in_array($mark,[0,1])){
+            $where['mark']=$mark;
+            $datas['mark']=$mark;
+        }
+
         /* ++++++++++ 排序 ++++++++++ */
         $ordername=input('ordername');
         $ordername=$ordername?$ordername:'id';

@@ -1,0 +1,110 @@
+{extend name='public:base'}
+{block name='title'}产品购买{/block}
+{block name='style'}
+<style type="text/css">
+  /* 购买产品 样式 start */
+  .product-buy-main{
+    width: 100%;
+    height: 100%;
+    background-color: #f4f5fa;
+  }
+  .product-buy-main img{
+    width: 100%;
+  }
+  .product-buy-main .product-detail{
+    width: 674px;
+    height: 292px;
+    margin: 50px auto 0;
+    border-radius: 10px;
+    background-color: #fff;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+  }
+  .product-buy-main .product-detail .item{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+  }
+  .product-buy-main .product-detail .item p{
+    flex: 1;
+    line-height: 60px;
+    font-size: 34px;
+    color: #666;
+    text-align: center;
+  }
+  .product-buy-main .product-detail .item p.left {
+
+  }
+  .product-buy-main .product-detail .item .left .point{
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  .product-buy-main .product-detail .item:nth-of-type(1){
+    margin-top: 7%;
+  }
+  .product-buy-main .product-detail .item:nth-of-type(1) .left .point{
+    background-color: #ffd28c;
+  }
+  .product-buy-main .product-detail .item:nth-of-type(2) .left .point{
+    background-color: #ff8c8c;
+  }
+  .product-buy-main .product-detail .item:nth-of-type(3) .left .point{
+    background-color: #00b852;
+  }
+  .product-buy-main .product-detail .item p.right{
+    font-size: 30px;
+  }
+  .product-buy-main .product-detail .item .right .red{
+    font-size: 36px;
+    color: #fb0d4a;
+  }
+  .product-buy-main .buy-btn{
+    width: 692px;
+    height: 90px;
+    line-height: 90px;
+    text-align: center;
+    margin: 54px auto 0;
+    border-radius: 44px;
+    background-color: #00a64a;
+    font-size: 32px;
+    box-sizing: border-box;
+  }
+  /* 购买产品 样式 end */
+</style>
+{/block}
+
+{block name='body'}
+<body>
+<div class="product-buy-main">
+  <img src="__INDEX_IMG__/product-img.png">
+
+  <div class="product-detail">
+    <div class="item">
+      <p class="left"><span class="point"></span>金额</p>
+      <p class="right"><span class="red">1980</span>元</p>
+    </div>
+    <div class="item">
+      <p class="left"><span class="point"></span>规格</p>
+      <p class="right"><span class="red">5</span>L/瓶</p>
+    </div>
+    <div class="item">
+      <p class="left"><span class="point"></span>数量</p>
+      <p class="right"><span class="red">57</span>瓶</p>
+    </div>
+  </div>
+
+  <div class="buy-btn"><a href="javascript:;">立即购买</a></div>
+</div>
+</body>
+{/block}
+
+
+
+

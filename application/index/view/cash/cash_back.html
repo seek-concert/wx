@@ -1,0 +1,161 @@
+{extend name='public:base'}
+{block name='title'}我的返现{/block}
+{block name='style'}
+<style type="text/css">
+  /* 我的返现 样式 start */
+  .cashback-main{
+    width: 100%;
+    height: 100%;
+  }
+  .cash-header{
+    position: relative;
+    height: 360px;
+    width: 100%;
+    box-sizing: border-box;
+    background: url(__INDEX_IMG__/fx-header.png) no-repeat center center/100% 100%;
+    /*border-top: 1px solid #2f2518;*/
+    /*border-bottom: 1px solid #eee;*/
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cash-header .header-top{
+    width: 690px;
+    height: 104px;
+    margin-top: 35px;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cash-header .header-top .header-top-l{
+    display: flex;
+    align-items: center;
+  }
+
+  .cash-header .header-top .header-top-l img{
+    height: 104px;
+    width: 104px;
+    border-radius: 50%;
+    border: 3px solid hsla(0,0%,90%,1);
+    box-sizing: border-box;
+  }
+  .cash-header .header-top .header-top-l p{
+    margin-left: 35px;
+    font-size: 30px;
+  }
+
+  .cash-header .header-top .header-top-r{
+    width: 145px;
+    height: 74px;
+    background: url(__INDEX_IMG__/fx-Buttons.png) no-repeat center center/143px 71px;
+  }
+  .cash-header .header-bot{
+    width: 690px;
+    height: 106px;
+    display: flex;
+  }
+
+  .cash-header .header-bot .header-bot-common{
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .cash-header .header-bot .header-bot-common .num{
+    font-size: 42px;
+  }
+  .cash-header .header-bot .header-bot-common .txt{
+    margin-top: 10px;
+    font-size: 28px;
+  }
+  .cash-header .header-bot .header-bot-common.total-cash{
+    border-right: 1px solid #fff;
+  }
+  /* 我的返现 样式 end */
+</style>
+{/block}
+
+{block name='body'}
+<body>
+<div class="cashback-main">
+
+  <!-- header img start -->
+  <div class="cash-header">
+    <div class="header-top">
+      <div class="header-top-l">
+        <img src="__INDEX_IMG__/header_logo.jpg">
+        <p>时光易老i</p>
+      </div>
+      <div class="header-top-r"><a href="{:url('withdraw/withdraw')}"></a></div>
+    </div>
+    <div class="header-bot">
+      <div class="header-bot-common total-cash">
+        <p class="num">4568.46</p>
+        <p class="txt">累计返利(元)</p>
+      </div>
+      <div class="header-bot-common wait-cash">
+        <p class="num">4568.46</p>
+        <p class="txt">待返利(元)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- column start -->
+  <div class="column-list">
+    <div class="column-item">
+      <a href="{:url('cash_record')}">
+        <div class="column-left">
+          <i class="icon iconfont icon-43"></i>
+        </div>
+        <div class="column-right">
+          <p>提现记录</p>
+          <i class="icon iconfont icon-youjiantou1"></i>
+        </div>
+      </a>
+    </div>
+    <div class="column-item">
+      <a href="{:url('instructions')}">
+        <div class="column-left">
+          <i class="icon iconfont icon-fanxian"></i>
+        </div>
+        <div class="column-right">
+          <p>提现说明</p>
+          <i class="icon iconfont icon-youjiantou1"></i>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-margin"></div>
+  <!-- footer start -->
+  <footer>
+    <div class="foot-item">
+      <a href="{:url('index/index')}">
+        <i class="icon iconfont icon-shouye"></i>
+        <p>首页</p>
+      </a>
+    </div>
+    <div class="foot-item">
+      <a href="{:url('coupon/coupon_center')}">
+        <i class="icon iconfont icon-qiaquan"></i>
+        <p>卡券</p>
+      </a>
+    </div>
+    <div class="foot-item active">
+      <a href="javascript:;">
+        <i class="icon iconfont icon-wode"></i>
+        <p>我的</p>
+      </a>
+    </div>
+  </footer>
+</div>
+</body>
+{/block}
+
+

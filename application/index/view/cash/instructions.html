@@ -1,0 +1,56 @@
+{extend name='public:base'}
+{block name='title'}提现说明{/block}
+{block name='style'}
+<style type="text/css">
+  /* 提现说明 样式 start */
+  .instructions-main{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .instructions-content{
+    width: 100%;
+    height: 100%;
+    padding: 20px 0;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  .instructions-content .points{
+    width: 100%;
+    line-height: 50px;
+  }
+  .instructions-content .points .icon{
+    width: 80px;
+    background: url(__INDEX_IMG__/prompt_bg.png) no-repeat center center/27px 30px;
+  }
+  .instructions-content .points span{
+    font-size: 28px;
+    color: #666;
+  }
+  /* 提现说明 样式 end */
+</style>
+{/block}
+
+{block name='body'}
+<body>
+<div class="instructions-main">
+  <div class="instructions-content">
+    <p class="points">
+      <i class="icon"></i>
+      <span>累计1000元免费提现额度。</span>
+    </p>
+    <p class="points">
+      <i class="icon"></i>
+      <span>超出1000元部分按银行费率收取手续费。</span>
+    </p>
+    <p class="points">
+      <i class="icon"></i>
+      <span>费率均为0.1%，每笔最少收0.1元。</span>
+    </p>
+  </div>
+</div>
+</body>
+{/block}
+
+
+

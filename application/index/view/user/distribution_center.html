@@ -1,0 +1,176 @@
+{extend name='public:base'}
+{block name='title'}分销中心{/block}
+{block name='style'}
+<style type="text/css">
+
+  /* 分销中心 样式 start */
+  .distribution-center-main{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .distribution-list{
+    width: 710px;
+    height: auto;
+    margin: 0 auto;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .distribution-list .distribution-item{
+    height: 149px;
+    width: 100%;
+    border-bottom: 1px solid #dcdcdc;
+    box-sizing: border-box;
+    display: flex;
+  }
+
+  .distribution-item-l{
+    position: relative;
+    width: 148px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .distribution-item-l .distribution-user-img{
+    width: 128px;
+    height: 128px;
+  }
+  .distribution-item-l .distribution-user-img img{
+    height: 100%;
+    border-radius: 50%;
+  }
+  .distribution-item-l .icon{
+    position: absolute;
+    bottom: 8%;
+    right: 8%;
+    width: 33px;
+    height: 30px;
+  }
+  .distribution-item-l .icon.yes{
+    background: url(__INDEX_IMG__/fx1.png) no-repeat center center/100% 100%;
+  }
+  .distribution-item-l .icon.no{
+    background: url(__INDEX_IMG__/fx2.png) no-repeat center center/100% 100%;
+  }
+  .distribution-item-r{
+    display: flex;
+    flex-direction: column;
+    /*align-items: center;*/
+    justify-content: center;
+  }
+  .distribution-item-r .distribution-user-name{
+    font-size: 32px;
+    color: #1a1a1a;
+  }
+  .distribution-item-r .distribution-user-money{
+    margin-top: 30px;
+    font-size: 28px;
+    color: #666;
+  }
+  .distribution-item-r .distribution-user-money .money{
+    margin-left: 10px;
+    color: #fc1200;
+  }
+  /* 分销中心 样式 end */
+</style>
+{/block}
+
+{block name='body'}
+<body>
+
+<div class="distribution-center-main">
+  <div class="distribution-list">
+    <div class="distribution-item">
+      <div class="distribution-item-l">
+        <div class="distribution-user-img">
+          <img src="__INDEX_IMG__/header_logo.jpg">
+        </div>
+        <i class="icon yes"></i>
+      </div>
+      <div class="distribution-item-r">
+        <p class="distribution-user-name">
+          潇洒亼◇生
+        </p>
+        <p class="distribution-user-money">消费金额：<span class="money">1980</span>元</p>
+      </div>
+    </div>
+
+    <div class="distribution-item">
+      <div class="distribution-item-l">
+        <div class="distribution-user-img">
+          <img src="__INDEX_IMG__/header_logo.jpg">
+        </div>
+        <i class="icon no"></i>
+      </div>
+      <div class="distribution-item-r">
+        <p class="distribution-user-name">
+          辅分散剂
+        </p>
+      </div>
+    </div>
+
+    <div class="distribution-item">
+      <div class="distribution-item-l">
+        <div class="distribution-user-img">
+          <img src="__INDEX_IMG__/header_logo.jpg">
+        </div>
+        <i class="icon yes"></i>
+      </div>
+      <div class="distribution-item-r">
+        <p class="distribution-user-name">
+          潇洒亼◇生
+        </p>
+        <p class="distribution-user-money">消费金额：<span class="money">1980</span>元</p>
+      </div>
+    </div>
+
+    <div class="distribution-item">
+      <div class="distribution-item-l">
+        <div class="distribution-user-img">
+          <img src="__INDEX_IMG__/header_logo.jpg">
+        </div>
+        <i class="icon no"></i>
+      </div>
+      <div class="distribution-item-r">
+        <p class="distribution-user-name">
+          辅分散剂
+        </p>
+      </div>
+    </div>
+    <div class="distribution-item">
+      <div class="distribution-item-l">
+        <div class="distribution-user-img">
+          <img src="__INDEX_IMG__/header_logo.jpg">
+        </div>
+        <i class="icon yes"></i>
+      </div>
+      <div class="distribution-item-r">
+        <p class="distribution-user-name">
+          潇洒亼◇生
+        </p>
+        <p class="distribution-user-money">消费金额：<span class="money">1980</span>元</p>
+      </div>
+    </div>
+
+    <div class="distribution-item">
+      <div class="distribution-item-l">
+        <div class="distribution-user-img">
+          <img src="__INDEX_IMG__/header_logo.jpg">
+        </div>
+        <i class="icon no"></i>
+      </div>
+      <div class="distribution-item-r">
+        <p class="distribution-user-name">
+          辅分散剂
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+{/block}
+
+

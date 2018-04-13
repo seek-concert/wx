@@ -1,0 +1,209 @@
+{extend name='public:base'}
+{block name='title'}加盟商信息{/block}
+{block name='style'}
+<style type="text/css">
+  .franchiser-main{
+    width: 100%;
+    height: 100%;
+    background-color: #f4f5fa;
+  }
+  .franchiser-header{
+    width: 100%;
+    height: 287px;
+    background-image: url("__INDEX_IMG__/franchiser_header.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 287px;
+    position: relative;
+    text-align: center;
+    padding: 60px 100px;
+  }
+  .franchiser-header .text{
+    font-size: 30px;
+  }
+  .franchiser-header .number{
+    font-size: 79px;
+    margin-top: 30px;
+    font-weight: bold;
+    text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;
+    -webkit-text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;
+    -moz-text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;
+    *filter: Glow(color=#000, strength=1);
+  }
+  .franchiser-header .scanning{
+    position: absolute;
+    right: 40px;
+    top: 30px;
+    text-align: center;
+  }
+  .franchiser-conten{
+    padding-top: 100px;
+  }
+  .franchiser-conten .canva{
+    width: 500px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .franchiser-botcon{
+    margin: 40px;
+    background-color: #ffffff;
+    color: #333333;
+    border-radius: 10px;
+    padding: 40px;
+  }
+  .franchiser-botcon .title{
+    text-align: center;
+    font-size: 28px;
+  }
+  .franchiser-botcon .fran-item{
+    padding: 20px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .franchiser-botcon .fran-item .fr{
+    float:right;
+  }
+  .franchiser-botcon .fran-item .yuan{
+    width: 20px;
+    height: 20px;
+    background-color: #cccccc;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .franchiser-botcon .fran-item.jinri .yuan{
+    background-color: rgba(255, 210, 140, 1);
+  }
+  .franchiser-botcon .fran-item.benzhou .yuan{
+    background-color: rgba(255, 140, 140, 1);
+  }
+  .franchiser-botcon .fran-item.benyue .yuan{
+    background-color: rgba(2, 192, 146, 1);
+  }
+</style>
+{/block}
+
+{block name='body'}
+<body>
+<div class="franchiser-main">
+  <div class="franchiser-header">
+    <div class="text">今日销量</div>
+    <div class="number">3996</div>
+    <div class="scanning">
+      <img src="__INDEX_IMG__/scanning.png" >
+      <div>扫描</div>
+    </div>
+  </div>
+  <div class="franchiser-conten">
+    <div class="canva">
+      <canvas id="myChart" width="200" height="200"></canvas>
+    </div>
+
+    <div class="franchiser-botcon">
+      <div class="title">数据统计</div>
+      <div class="fran-item jinri">
+        <span class="yuan"></span>
+        <span>今日销量</span>
+        <span class="fr">3996</span>
+      </div>
+      <div class="fran-item benzhou">
+        <span class="yuan"></span>
+        <span>本周销量</span>
+        <span class="fr">3996</span>
+      </div>
+      <div class="fran-item benyue">
+        <span class="yuan"></span>
+        <span>本月销量</span>
+        <span class="fr">3996</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<script src="__INDEX_JS__/Chart.js"></script>
+<script>
+    var ctx = document.getElementById("myChart").getContext("2d");
+    var data = {
+        labels: [ "今日销量", "本周销量","本月销量"],
+        datasets: [{
+            data: [15, 30, 55],
+            backgroundColor: [
+                'rgba(255, 210, 140, 1)',
+                'rgba(255, 140, 140, 1)',
+                'rgba(2, 192, 146, 1)'
+            ],
+        }],
+    };
+    var options ={
+        //布尔值-是否应该在每个段上显示一个笔画
+        segmentShowStroke : true,
+        //每段笔划的颜色
+        segmentStrokeColor : "#fff",
+        //每段行程的宽度
+        segmentStrokeWidth : 2,
+        //数字——我们从中间裁剪出来的图表的百分比。
+        percentageInnerCutout : 50, // This is 0 for Pie charts
+        //动画步骤的数量
+        animationSteps : 100,
+        //字符串动画放松效果
+        animationEasing : "easeOutBounce",
+        //布尔值-我们是否激活甜甜圈的旋转
+        animateRotate : true,
+        //布尔值-我们是否动画从中心扩展甜甜圈
+        animateScale : false,
+        //图例模板
+        //legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+    }
+    var myDoughnutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: data,
+        options: options
+    });
+
+
+    //   var myChart = new Chart(ctx, {
+    //     type: 'bar',
+    //     data: {
+    //         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    //         datasets: [{
+    //             label: '# of Votes',
+    //             data: [12, 19, 3, 5, 2, 3],
+    //             backgroundColor: [
+    //                 'rgba(255, 99, 132, 0.2)',
+    //                 'rgba(54, 162, 235, 0.2)',
+    //                 'rgba(255, 206, 86, 0.2)',
+    //                 'rgba(75, 192, 192, 0.2)',
+    //                 'rgba(153, 102, 255, 0.2)',
+    //                 'rgba(255, 159, 64, 0.2)'
+    //             ],
+    //             borderColor: [
+    //                 'rgba(255,99,132,1)',
+    //                 'rgba(54, 162, 235, 1)',
+    //                 'rgba(255, 206, 86, 1)',
+    //                 'rgba(75, 192, 192, 1)',
+    //                 'rgba(153, 102, 255, 1)',
+    //                 'rgba(255, 159, 64, 1)'
+    //             ],
+    //             borderWidth: 1
+    //         }]
+    //     },
+    //     options: {
+    //         scales: {
+    //             yAxes: [{
+    //                 ticks: {
+    //                     beginAtZero:true
+    //                 }
+    //             }]
+    //         }
+    //     }
+    // });
+
+
+</script>
+</body>
+{/block}
+
+
+
+
+

@@ -1,0 +1,62 @@
+{extend name='public:base'}
+{block name='title'}消息详情{/block}
+{block name='style'}
+<style type="text/css">
+
+  /* 消息详情 样式 start */
+  .msginfo-main{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .msg-content{
+    padding: 0 40px;
+    height: auto;
+    width: 100%;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  .msg-content .msg-header{
+    height: 185px;
+    padding-top: 45px;
+    text-align: center;
+  }
+  .msg-content .msg-header h2{
+    width: 100%;
+    font-size: 34px;
+    color: #333;
+  }
+  .msg-content .msg-header h3{
+    width: 100%;
+    color: #666;
+    margin-top: 35px;
+  }
+  .msg-content .msg-header span{
+    font-size: 28px;
+  }
+  .msg-content .msg-header span.time{
+    margin-left: 15px;
+  }
+  .msg-content p{
+    font-size: 26px;
+    color: #4c4c4c;
+    line-height: 50px;
+  }
+  /* 消息详情 样式 end */
+</style>
+{/block}
+{block name='body'}
+<body>
+<div class="msginfo-main">
+  <div class="msg-content">
+    <div class="msg-header">
+      <h2>盈系列产品赎回规则变公告!!!</h2>
+      <h3><span>重庆</span><span class="time">8-25</span>发布</h3>
+    </div>
+    <p>
+      以现代生命科学的核心事件-中心法则为线索，全面而重点地介绍现代生命科学的分子核心要素，以启迪学习者思维。包括遗传主要物质基础DNA的作用，在生活中的应用、研究方法学等，从基本原理、研究方法和应用等三个主要层面进行介绍。课程兼顾经典与现代、科学与人文，知识传授与科学思维结合。在讲述DNA相关功能及研究的过程中，同时，将DNA科学相关的热点问题有机整合到课程中，引导探索热点问题背后的DNA科学基础，为学生学习后续专业课程打下坚实的基础，对全面提高学生的专业知识素养具有重要作用。通过本课程的学习，使学生系统掌握发现DNA是主要物质基础的历史以及实验方法和原理，熟知DNA行使遗传功能的方式，学习除DNA之外还具有遗传功能的物质，并了解DNA作为主要的遗传物质在我们生活中的应用。
+    </p>
+  </div>
+</div>
+</body>
+{/block}
