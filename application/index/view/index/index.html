@@ -1,0 +1,333 @@
+{extend name='public:base'}
+{block name='title'}盛科能源-首页{/block}
+{block name='style'}
+<style type="text/css">
+  .index-main{
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+  }
+  .index-main a{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* 轮播样式 start */
+  .swipper{
+    height: 350px;
+    width: 100%;
+    position: relative;
+  }
+  .swipe-container{
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+  }
+  .swipe-container ul.ul-container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .swipe-container li{
+    width: 100%;
+    height: 100%;
+    background-position: center top;
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-align: center;
+  }
+  .swipe-container li a{
+    display: block;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .swipper .handler{
+    position: absolute;
+    width: 100%;
+    font-size: 0;
+    z-index: 20;
+    text-align: center;
+    bottom: 30px;
+    height: 20px;
+  }
+  .swipper .handler a{
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    margin: 0 10px;
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    overflow: hidden;
+    background-color: #fff;
+    -webkit-transition: all .2s ease-out;
+    -moz-transition: all .2s ease-out;
+    -ms-transition: all .2s ease-out;
+    -o-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+  }
+  .swipper .handler a.active{
+    width: 30px;
+    border-radius: 5px;
+    background-color: #1ad69a;
+  }
+  /* 轮播样式 end */
+
+  .header-nav{
+    height: 198px;
+    width: 690px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display: flex;
+  }
+  .header-nav .nav-item{
+    height: 100%;
+    flex: 1;
+  }
+  .header-nav .nav-item a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .header-nav .nav-item img{
+    width: 96px;
+    height: 96px;
+  }
+  .header-nav .nav-item p{
+    margin-top: 15px;
+    color: #333;
+  }
+
+  /* 新闻 start */
+  .news-container{
+    height: 94px;
+    width: 100%;
+    border-top: 1px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+  }
+  .news-container .new-img{
+    width: 160px;
+    height: 32px;
+    background: url(__INDEX_IMG__/sy-new.png) no-repeat center center/127px 31px;
+    border-right: 1px solid #e5e5e5;
+  }
+  .news-container .new-list{
+    flex: 1;
+    height: 100%;
+  }
+  .news-container .new-list .list-item{
+    height: 100%;
+    /*width: 100%;*/
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .news-container .new-list .list-item p{
+    height: 100%;
+    font-size: 26px;
+    color: #666;
+    line-height: 94px;
+  }
+  .news-container .new-list .list-item .icon{
+    color: #b3b3b3;
+    font-size: 48px;
+    margin-right: 20px;
+  }
+
+  /* product start */
+  .product-container{
+    width: 100%;
+    height: 232px;
+  }
+
+  /* merchants list start */
+
+  .merchants-header{
+    width: 100%;
+    height: 90px;
+    border-bottom: 1px solid #dcdcdc;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .merchants-header .left{
+    font-size: 32px;
+    color: #333;
+    padding-left: 10px;
+  }
+  .merchants-header .right{
+
+  }
+  .merchants-header .right a{
+    display: flex;
+    align-items: center;
+  }
+  .merchants-header .right span{
+    font-size: 26px;
+    color: #808080;
+  }
+  .merchants-header .right .icon{
+    color: #b3b3b3;
+    font-size: 48px;
+  }
+</style>
+{/block}
+
+{block name='body'}
+<body>
+<div class="index-main">
+  <div class="swipper">
+    <div class="swipe-container">
+      <ul class="ul-container">
+        <li style="background-image: url(__INDEX_IMG__/banner.png);"> <a target="_blank"></a> </li>
+      </ul>
+    </div>
+    <div class="handler">
+      <a class="active"></a>
+      <a></a>
+      <a></a>
+      <a></a>
+      <a></a>
+    </div>
+  </div>
+  <!-- nav start -->
+  <div class="header-nav">
+    <div class="nav-item">
+      <a href="{:url('company/company_info')}">
+        <img src="__INDEX_IMG__/Introduction.png">
+        <p>公司简介</p>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a href="{:url('product/product_info')}">
+        <img src="__INDEX_IMG__/sy-product.png">
+        <p>公司产品</p>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a href="{:url('welfare/index')}">
+        <img src="__INDEX_IMG__/sy-activity.png">
+        <p>优惠活动</p>
+      </a>
+    </div>
+  </div>
+  <!-- news start -->
+  <div class="news-container">
+    <div class="new-img"></div>
+    <ul class="new-list">
+      <a href="javascript:;">
+        <li class="list-item">
+          <p>盛科能源vip今日特想优惠大礼包</p>
+          <i class="icon iconfont icon-youjiantou1"></i>
+        </li>
+      </a>
+    </ul>
+  </div>
+
+  <!-- product start -->
+  <div class="product-container">
+    <a href="{:url('product/product_info')}">
+      <img src="__INDEX_IMG__/banner1.png" />
+    </a>
+  </div>
+
+  <!-- merchants start -->
+  <div class="merchants-list-container">
+    <div class="merchants-header">
+      <p class="left">加盟商列表</p>
+      <div class="right">
+        <a href="{:url('merchant/merchants_list')}">
+          <span>查看更多</span>
+          <i class="icon iconfont icon-youjiantou1"></i>
+        </a>
+      </div>
+    </div>
+    <div class="merchants-list-content">
+      <div class="merchants-item">
+        <div class="merchants-logo" style="background: url('__INDEX_IMG__/index_list_img1.png') no-repeat center center/205px 143px;">
+          <img src="__INDEX_IMG__/jiao1.png">
+        </div>
+        <div class="merchants-info">
+          <p class="merchants-name">商家名称：简租</p>
+          <p class="merchants-addr">
+            <i class="icon iconfont icon-dizhi"></i>
+            <span>重庆市渝北区杨柳北路29号</span>
+          </p>
+          <p class="merchants-tel">
+            <i class="icon iconfont icon-dianhua"></i>
+            <span>02352433464</span>
+          </p>
+        </div>
+      </div>
+      <div class="merchants-item">
+        <div class="merchants-logo" style="background: url('__INDEX_IMG__/index_list_img2.png') no-repeat center center/205px 143px;">
+          <img src="__INDEX_IMG__/jiao2.png">
+        </div>
+        <div class="merchants-info">
+          <p class="merchants-name">商家名称：简租</p>
+          <p class="merchants-addr">
+            <i class="icon iconfont icon-dizhi"></i>
+            <span>重庆市渝北区杨柳北路29号</span>
+          </p>
+          <p class="merchants-tel">
+            <i class="icon iconfont icon-dianhua"></i>
+            <span>02352433464</span>
+          </p>
+        </div>
+      </div>
+      <div class="merchants-item">
+        <div class="merchants-logo" style="background: url('__INDEX_IMG__/index_list_img1.png') no-repeat center center/205px 143px;">
+          <img src="__INDEX_IMG__/jiao1.png">
+        </div>
+        <div class="merchants-info">
+          <p class="merchants-name">商家名称：简租</p>
+          <p class="merchants-addr">
+            <i class="icon iconfont icon-dizhi"></i>
+            <span>重庆市渝北区杨柳北路29号</span>
+          </p>
+          <p class="merchants-tel">
+            <i class="icon iconfont icon-dianhua"></i>
+            <span>02352433464</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-margin"></div>
+  <!-- footer start -->
+  <footer>
+    <div class="foot-item active">
+      <a href="javascript:;">
+        <i class="icon iconfont icon-shouye"></i>
+        <p>首页</p>
+      </a>
+    </div>
+    <div class="foot-item">
+      <a href="{:url('coupon/coupon_center')}">
+        <i class="icon iconfont icon-qiaquan"></i>
+        <p>卡券</p>
+      </a>
+    </div>
+    <div class="foot-item">
+      <a href="{:url('user/user_center')}">
+        <i class="icon iconfont icon-wode"></i>
+        <p>我的</p>
+      </a>
+    </div>
+  </footer>
+</div>
+</body>
+{/block}

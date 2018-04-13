@@ -1,0 +1,193 @@
+{extend name='public:base'}
+{block name='title'}我的卡卷{/block}
+{block name='style'}
+<style type="text/css">
+    .card-main{
+        width: 100%;
+        height: 100%;
+        background-color: #f4f5fa;
+    }
+    .card-list{
+        padding: 30px 30px 0;
+    }
+    .card-list .card-item{
+        margin-bottom:30px;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100%;
+        height: 290px;
+        overflow: hidden;
+        color: #ffffff;
+    }
+    .card-list .card-item.volume-one{
+        background-image: url("__INDEX_IMG__/card_bg1.png");
+    }
+    .card-list .card-item.volume-two{
+        background-image: url("__INDEX_IMG__/card_bg2.png");
+    }
+    .card-list .card-item.volume-three{
+        background-image: url("__INDEX_IMG__/card_bg3.png");
+    }
+    .card-list .card-item .hd-title{
+        color: #ffffff;
+        line-height: 75px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .card-list .card-item .card-con{
+        color: #ffffff;
+        position: relative;
+        height: 215px;
+        overflow: hidden;
+    }
+    .card-list .card-item .card-con .lfcon{
+        width: 220px;
+        float: left;
+        height: 100%;
+        text-align: center;
+        position: relative;
+    }
+    .card-list .card-item .card-con .lfcon::after{
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        margin-top: -50px;
+        width: 1px;
+        height: 80px;
+        background-color: #ffffff;
+    }
+    .card-list .card-item .card-con .lfcon>p{
+        font-size: 20px;
+    }
+    .card-list .card-item .card-con .text{
+        padding-top: 50px;
+        padding-bottom: 15px;
+        text-align: center;
+    }
+    .card-list .card-item .card-con .card-erm{
+        margin-top: 30px;
+        margin-bottom: 5px;
+        width: 115px;
+        height: 115px;
+        display: inline-block;
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .card-list .card-item .card-con .card-erm>img{
+        width: 100%;
+        height: 100%;
+    }
+    .card-list .card-item .card-con .text>span{
+        font-size: 38px;
+    }
+    .card-list .card-item .card-con .rgcon{
+        margin-left: 220px;
+        height: 100%;
+        padding: 0 30px;
+    }
+    .card-list .card-item .card-con .rgcon .text{
+        line-height: 80px;
+        font-size: 28px;
+    }
+    .card-list .card-item .card-con .rgcon .ckxq{
+        text-align: right;
+        line-height: 60px;
+    }
+
+</style>
+{/block}
+
+{block name='body'}
+<body>
+<div class="card-main">
+    <div class="card-list">
+
+        <div class="card-item volume-one">
+            <div class="hd-title">
+                有效期：永久
+            </div>
+            <div class="card-con">
+                <div class="lfcon">
+                    <div class="text">
+                        ￥<span>1980</span>
+                    </div>
+                    <p>会员专享VIP价格</p>
+                </div>
+                <div class="rgcon">
+                    <div class="text">
+                        请在有效期内到实体店自提消费
+                    </div>
+                    <div class="ckxq">
+                        <a href="{:url('coupon_info')}">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-item volume-two">
+            <div class="hd-title">
+                有效期：永久
+            </div>
+            <div class="card-con">
+                <div class="lfcon">
+                    <div class="card-erm">
+                        <img src="__INDEX_IMG__/ewm.png" >
+                    </div>
+                    <p>活动大礼包</p>
+                </div>
+                <div class="rgcon">
+                    <div class="text">
+                        请在有效期内到实体店自提消费
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-item volume-three">
+            <div class="hd-title">
+                已消费
+            </div>
+            <div class="card-con">
+                <div class="lfcon">
+                    <div class="card-erm">
+                        <img src="__INDEX_IMG__/ewm.png" >
+                    </div>
+                    <p>活动大礼包</p>
+                </div>
+                <div class="rgcon">
+                    <div class="text">
+                        请在有效期内到实体店自提消费
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<footer>
+    <div class="foot-item">
+        <a href="{:url('index/index')}">
+            <i class="icon iconfont icon-shouye"></i>
+            <p>首页</p>
+        </a>
+    </div>
+    <div class="foot-item active">
+        <a href="javascript:;">
+            <i class="icon iconfont icon-qiaquan"></i>
+            <p>卡券</p>
+        </a>
+    </div>
+    <div class="foot-item">
+        <a href="{:url('user/user_center')}">
+            <i class="icon iconfont icon-wode"></i>
+            <p>我的</p>
+        </a>
+    </div>
+</footer>
+</body>
+{/block}
+
+

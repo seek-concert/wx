@@ -1,0 +1,96 @@
+
+{extend name='public:base'}
+{block name='title'}优惠活动{/block}
+{block name='style'}
+<style type="text/css">
+    .prefer-main{
+        width: 100%;
+        height: 100%;
+        background-image: url("__INDEX_IMG__/discount-Bg.png");
+        background-size: 100% 100%;
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        position: relative;
+    }
+    .prefer-conten{
+        background-image: url("__INDEX_IMG__/discount-Bg1.png");
+        width: 100%;
+        height: 550px;
+        position: absolute;
+        bottom: 160px;
+    }
+    .prefer-conten .title{
+        text-align: center;
+        font-size: 32px;
+        color: #ffffff;
+        padding-top: 45px;
+        font-weight: bold;
+    }
+    .prefer-list{
+        padding: 40px 100px;
+    }
+    .prefer-list .prefer-item{
+        color:#333333;
+        padding-left: 40px;
+        position: relative;
+        margin: 30px 0;
+    }
+    .prefer-list .prefer-item .xuhao{
+        position: absolute;
+        left: 0;
+        background-color: #fba22e;
+        color: #ffffff;
+        padding: 5px 10px;
+
+    }
+    .prefer-btn{
+        background-image: url("__INDEX_IMG__/discout-btn.png");
+        background-size: 100% auto;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 266px;
+        height: 95px;
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        margin-left: -133px;
+        cursor: pointer;
+    }
+</style>
+{/block}
+
+{block name='body'}
+<body>
+<div class="prefer-main">
+
+    <div class="prefer-conten">
+        <div class="title">
+            会员权益
+        </div>
+        <div class="prefer-list">
+            <div class="prefer-item">
+                <span class="xuhao">1</span>
+                活动期间提交预约申请，并成功购买我们的产品的用户，累计成功购买金额可获得返利10%。
+            </div>
+            <div class="prefer-item">
+                <span class="xuhao">2</span>
+                活动期间提交预约申请，并成功购买我们的产品的用户，累计成功购买金额可获得返利10%。
+            </div>
+            <div class="prefer-item">
+                <span class="xuhao">3</span>
+                活动期间提交预约申请，并成功购买我们的产品的用户，累计成功购买金额可获得返利10%。
+            </div>
+            <div class="prefer-item">
+                <span class="xuhao">4</span>
+                活动期间提交预约申请，并成功购买我们的产品的用户，累计成功购买金额可获得返利10%。
+            </div>
+        </div>
+    </div>
+
+    <div class="prefer-btn"></div>
+
+</div>
+</body>
+{/block}
+
+

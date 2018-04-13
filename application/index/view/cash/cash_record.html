@@ -1,0 +1,109 @@
+{extend name='public:base'}
+{block name='title'}返现记录{/block}
+{block name='style'}
+<style type="text/css">
+  .cashrecord-main{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  /* record-list 样式 start  */
+  .record-list{
+    width: 710px;
+    height: auto;
+    margin: 0 auto;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  .record-item{
+    width: 100%;
+    height: 112px;
+    border-bottom: 1px solid #e5e5e5;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .record-item .record-item-l{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .record-item .record-item-l p{
+    font-size: 30px;
+    color: #666;
+  }
+  .record-item .record-item-l p.withdrawal{
+    color: #333;
+  }
+  .record-item .record-item-l p.time{
+    font-size: 22px;
+  }
+  .record-item .record-item-r{
+    margin-right: 10px;
+    font-size: 28px;
+    color: #333;
+  }
+  .record-item .record-item-r.red{
+    font-size: 30px;
+    color: #ff0a04;
+  }
+</style>
+{/block}
+
+{block name='body'}
+<body>
+<div class="cashrecord-main">
+  <div class="record-list">
+    <div class="record-item">
+      <div class="record-item-l">
+        <p class="withdrawal">已提现金额</p>
+      </div>
+      <div class="record-item-r red">
+        ￥145.26
+      </div>
+    </div>
+    <div class="record-item">
+      <div class="record-item-l">
+        <p>消费返现</p>
+        <p class="time">2018-3-24</p>
+      </div>
+      <div class="record-item-r">
+        ￥145.26
+      </div>
+    </div>
+    <div class="record-item">
+      <div class="record-item-l">
+        <p>消费返现</p>
+        <p class="time">2018-3-24</p>
+      </div>
+      <div class="record-item-r">
+        ￥145.26
+      </div>
+    </div>
+    <div class="record-item">
+      <div class="record-item-l">
+        <p>消费返现</p>
+        <p class="time">2018-3-24</p>
+      </div>
+      <div class="record-item-r">
+        ￥145.26
+      </div>
+    </div>
+    <div class="record-item">
+      <div class="record-item-l">
+        <p>消费返现</p>
+        <p class="time">2018-3-24</p>
+      </div>
+      <div class="record-item-r">
+        ￥145.26
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+{/block}
+

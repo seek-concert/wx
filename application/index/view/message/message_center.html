@@ -1,0 +1,146 @@
+{extend name='public:base'}
+{block name='title'}消息中心{/block}
+{block name='style'}
+<style type="text/css">
+
+  /* 消息中心 样式 start */
+  .messages-main{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .message-list{
+    height: auto;
+    width: 100%;
+    padding-top: 15px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  .message-list .message-item{
+    height: 142px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .message-list .message-item a{
+    display: flex;
+    align-items: center;
+  }
+  .message-list .message-item .msg-l{
+    position: relative;
+    width: 140px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .message-list .message-item .msg-l .prompt-icon{
+    width: 80px;
+    height: 80px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: #f5bc40;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .message-list .message-item .msg-l .prompt-icon .icon{
+    font-size: 48px;
+  }
+  .message-list .message-item .msg-l .red-point{
+    display: none;
+    position: absolute;
+    top: 15%;
+    right: 15%;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ff0000;
+  }
+  .message-list .message-item .msg-l.news .red-point{
+    display: block;
+  }
+  .message-list .message-item .msg-r{
+    flex: 1;
+    height: 100%;
+    padding-left: 5px;
+    padding-right: 28px;
+    border-bottom: 1px solid #d2d2d2;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .message-list .message-item:active .msg-r{
+    background-color: #ccc;
+  }
+  .message-list .message-item .msg-r .msg-type{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .message-list .message-item .msg-r .msg-type .txt{
+    font-size: 30px;
+    color: #333;
+  }
+  .message-list .message-item .msg-r .msg-type .time{
+    color: #808080;
+  }
+  .message-list .message-item .msg-r .msg-txt{
+    margin-top: 20px;
+    font-size: 26px;
+    color: #808080;
+  }
+  /* 消息中心 样式 end */
+</style>
+{/block}
+
+{block name='body'}
+<body>
+<div class="messages-main">
+  <div class="message-list">
+    <div class="message-item">
+      <a href="{:url('messages_info')}">
+        <div class="msg-l news">
+          <div class="prompt-icon">
+            <i class="icon iconfont icon-iconlingdang"></i>
+          </div>
+          <div class="red-point"></div>
+        </div>
+        <div class="msg-r">
+          <div class="msg-type">
+            <p class="txt">系统通知</p>
+            <p class="time">08-25</p>
+          </div>
+          <p class="msg-txt">
+            盈系列产品赎回规则变公告
+          </p>
+        </div>
+      </a>
+    </div>
+
+    <div class="message-item">
+      <a href="{:url('messages_info')}">
+        <div class="msg-l">
+          <div class="prompt-icon">
+            <i class="icon iconfont icon-iconlingdang"></i>
+          </div>
+          <div class="red-point"></div>
+        </div>
+        <div class="msg-r">
+          <div class="msg-type">
+            <p class="txt">精选活动</p>
+            <p class="time">08-25</p>
+          </div>
+          <p class="msg-txt">
+            盈系列产品赎回规则变公告
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+</body>
+{/block}
+
