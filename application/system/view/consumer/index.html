@@ -45,8 +45,11 @@
                 <th>头像</th>
                 <th>分销上级</th>
                 <th>返现总额</th>
-                <th>已提现金额</th>
-                <th>待返现金额</th>
+                <th>已提现</th>
+                <th>待返现</th>
+                <th>购买总额</th>
+                <th>消费总额</th>
+                <th>剩余总额</th>
                 <th>加盟商</th>
                 <th>创建时间</th>
                 <th>修改时间</th>
@@ -69,15 +72,20 @@
                     <span>暂无</span>
                     {/notempty}
                 </td>
-                <td>{notempty name='consumer->superior'}{$consumer->superior->user_name}{else/}无{/notempty}</td>
+                <td>{notempty name='consumer->superior'}{$consumer->superior->user_name}{/notempty}</td>
                 <td>{$consumer->total|number_format=2}</td>
                 <td>{$consumer->cashed|number_format=2}</td>
                 <td>{$consumer->left|number_format=2}</td>
-                <td>{notempty name='consumer->franchisee'}{$consumer->franchisee->name}{else/}无{/notempty}</td>
+                <td>{$consumer->payment|number_format=2}</td>
+                <td>{$consumer->consumed|number_format=2}</td>
+                <td>{$consumer->remaining|number_format=2}</td>
+                <td>{notempty name='consumer->franchisee'}{$consumer->franchisee->name}{/notempty}</td>
                 <td>{$consumer->created_at}</td>
                 <td>{$consumer->updated_at}</td>
                 <td>
                     <button type="button" class="btn" onclick="layerIfWindow('用户信息',	'{:url('detail',['id'=>$consumer->id])}','','300')" >用户信息</button>
+                    <button type="button" class="btn" onclick="layerIfWindow('购买信息',	'{:url('card',['id'=>$consumer->id])}','','600')" >购买信息</button>
+                    <button type="button" class="btn" onclick="layerIfWindow('消费信息',	'{:url('consume',['id'=>$consumer->id])}','','600')" >消费信息</button>
                     <button type="button" class="btn" onclick="layerIfWindow('下级分销',	'{:url('distribution',['id'=>$consumer->id])}','','600')">下级分销</button>
                     <button type="button" class="btn" onclick="layerIfWindow('绑定加盟商',	'{:url('bind',['id'=>$consumer->id])}','','300')">绑定加盟商</button>
                     <button type="button" data-action="{:url('delete',['ids'=>$consumer->id])}" class="btn js-ajax-form-btn">删除</button>

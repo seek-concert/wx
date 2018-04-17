@@ -209,18 +209,18 @@
           <img src="__INDEX_IMG__/header_logo.jpg">
         </div>
         <div class="coupon-user-info">
-          <p class="coupon-name">时光老人i</p>
-          <p class="coupon-cardid">6598  6245  2545  5245  36</p>
+          <p class="coupon-name">{$data.consumer.user_name}</p>
+          <p class="coupon-cardid">{$data.number}</p>
         </div>
       </div>
 
       <div class="coupon-money-container">
         <div class="coupon-money-common has-use">
-          <p class="num">4568.46</p>
+          <p class="num">{$data.consumed}</p>
           <p class="txt">已用金额</p>
         </div>
         <div class="coupon-money-common no-use">
-          <p class="num">4568.46</p>
+          <p class="num">{$data.remaining}</p>
           <p class="txt">未用金额</p>
         </div>
       </div>
@@ -229,7 +229,7 @@
     <!-- column start -->
     <div class="column-list">
       <div class="column-item">
-        <a href="javascript:;">
+        <a href="{:url('cash/instructions')}">
           <div class="column-left">
             <i class="icon iconfont icon-iconset0219"></i>
           </div>
@@ -240,7 +240,7 @@
         </a>
       </div>
       <div class="column-item">
-        <a href="javascript:;">
+        <a href="{:url('cash/instructions')}">
           <div class="column-left">
             <i class="icon iconfont icon-navicon-wgxzsz"></i>
           </div>
@@ -258,13 +258,13 @@
         <div class="coupon-card-img">
           <img src="__INDEX_IMG__/header_logo.jpg">
         </div>
-        <p class="coupon-card-name">╭岁冄茹歌╮</p>
+        <p class="coupon-card-name">{$data.consumer.user_name}</p>
       </div>
 
       <div class="coupon-card-body">
         <div class="ewm-container">
           <div class="ewm-bg">
-            <img src="__INDEX_IMG__/ewm.png">
+            <img src="http://pan.baidu.com/share/qrcode?w=250&h=250&url=http://www.xbodysport.cn/home/test/index?key=123">
           </div>
         </div>
 
@@ -274,7 +274,7 @@
         </div>
 
         <div class="coupon-card-time">
-          <p>有效期：<span>2015.5.3-2018.5.5</span></p>
+          <p>有效期：<span>永久有效</span></p>
         </div>
       </div>
     </div>

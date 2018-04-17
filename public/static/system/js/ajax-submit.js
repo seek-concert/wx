@@ -90,6 +90,7 @@ function js_ajax_form_action(btn,url,data,msg,is_layer) {
             }
         },
         success:function (data) {
+            console.log(data);
             btn.data("loading",false).prop('disabled',false).removeClass('disabled');
             $('input[name=name]').focus();
             if(data.url){
@@ -108,10 +109,12 @@ function js_ajax_form_action(btn,url,data,msg,is_layer) {
                 }
                 return false;
             }else{
+                layer.msg(data.msg);
                 $('input[name=name]').focus();
             }
         },
         error:function (xhr,e,statusText) {
+            console.log('test');
             btn.data("loading",false).prop('disabled',false).removeClass('disabled');
             $('input[name=name]').focus();
             layer.msg('网络故障！请稍候重试……',function () {});

@@ -58,50 +58,32 @@
 <body>
 <div class="cashrecord-main">
   <div class="record-list">
-    <div class="record-item">
-      <div class="record-item-l">
-        <p class="withdrawal">已提现金额</p>
-      </div>
-      <div class="record-item-r red">
-        ￥145.26
-      </div>
+  <div class="record-item">
+    <div class="record-item-l">
+      <p class="withdrawal">已提现金额</p>
     </div>
-    <div class="record-item">
-      <div class="record-item-l">
-        <p>消费返现</p>
-        <p class="time">2018-3-24</p>
-      </div>
-      <div class="record-item-r">
-        ￥145.26
-      </div>
+    <div class="record-item-r red">
+      ￥{$cashed|number_format=2}
     </div>
+  </div>
+
+
+    {volist name='list' id='v'}
     <div class="record-item">
       <div class="record-item-l">
         <p>消费返现</p>
-        <p class="time">2018-3-24</p>
+        <p class="time">{:explode(' ',$v.created_at)[0]}</p>
       </div>
       <div class="record-item-r">
-        ￥145.26
+        ￥{if condition='$v.superior_id == $consumer_id'}
+            {$v.superior_amount|number_format=2}
+        {elseif condition='$v.consumer_id == $consumer_id'}
+            {$v.rebate|number_format=2}
+        {/if}
       </div>
     </div>
-    <div class="record-item">
-      <div class="record-item-l">
-        <p>消费返现</p>
-        <p class="time">2018-3-24</p>
-      </div>
-      <div class="record-item-r">
-        ￥145.26
-      </div>
-    </div>
-    <div class="record-item">
-      <div class="record-item-l">
-        <p>消费返现</p>
-        <p class="time">2018-3-24</p>
-      </div>
-      <div class="record-item-r">
-        ￥145.26
-      </div>
-    </div>
+    {/volist}
+
   </div>
 </div>
 </body>

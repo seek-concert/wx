@@ -8,7 +8,7 @@
         background-color: #f4f5fa;
     }
     .card-list{
-        padding: 30px 30px 0;
+        padding: 30px 30px 100px;
     }
     .card-list .card-item{
         margin-bottom:30px;
@@ -104,14 +104,15 @@
 <div class="card-main">
     <div class="card-list">
 
-        <div class="card-item volume-one">
+        {volist name='list' id='v' key='k'}
+        <div class="card-item   {if condition='$k%2==1'}volume-one{else/}volume-two{/if}">
             <div class="hd-title">
                 有效期：永久
             </div>
             <div class="card-con">
                 <div class="lfcon">
                     <div class="text">
-                        ￥<span>1980</span>
+                        ￥<span>{$v.total}</span>
                     </div>
                     <p>会员专享VIP价格</p>
                 </div>
@@ -120,50 +121,12 @@
                         请在有效期内到实体店自提消费
                     </div>
                     <div class="ckxq">
-                        <a href="{:url('coupon_info')}">查看详情</a>
+                        <a href="{:url('coupon_info',['id'=>$v.id])}">查看详情</a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="card-item volume-two">
-            <div class="hd-title">
-                有效期：永久
-            </div>
-            <div class="card-con">
-                <div class="lfcon">
-                    <div class="card-erm">
-                        <img src="__INDEX_IMG__/ewm.png" >
-                    </div>
-                    <p>活动大礼包</p>
-                </div>
-                <div class="rgcon">
-                    <div class="text">
-                        请在有效期内到实体店自提消费
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-item volume-three">
-            <div class="hd-title">
-                已消费
-            </div>
-            <div class="card-con">
-                <div class="lfcon">
-                    <div class="card-erm">
-                        <img src="__INDEX_IMG__/ewm.png" >
-                    </div>
-                    <p>活动大礼包</p>
-                </div>
-                <div class="rgcon">
-                    <div class="text">
-                        请在有效期内到实体店自提消费
-                    </div>
-
-                </div>
-            </div>
-        </div>
+        {/volist}
 
     </div>
 </div>

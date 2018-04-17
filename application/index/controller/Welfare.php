@@ -1,5 +1,6 @@
 <?php
 namespace app\index\controller;
+use app\system\model\Consumers;
 /**
  * Created by PhpStorm.
  * User: Administrator

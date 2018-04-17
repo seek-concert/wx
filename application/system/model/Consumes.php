@@ -18,7 +18,7 @@ class Consumes extends  Model{
 
     /*关联卡券*/
     public function card(){
-        return $this->belongsTo('card');
+        return $this->belongsTo('Cards','card_id');
     }
 
     /*关联消费者*/

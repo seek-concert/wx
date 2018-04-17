@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>消费信息|后台管理系统</title>
+    {include file="public/head" /}
+</head>
+<body>
+<form method="get">
+    <div class="layerCon bg_f">
+        <table class="layerTable" border="1px">
+            <tr class="h50">
+                <td><label for="date">消费时间：</label></td>
+                <td>
+                    <input id="date" type="text" name="date" value="{$Think.get.date|default=''}"  placeholder="请选择时间"/>
+                </td >
+                <td><button class="btn" type="submit">查询</button></td>
+            </tr>
+
+            <tr class="h50">
+                <th>ID</th>
+                <th>消费用户</th>
+                <th>消费金额</th>
+                <th>消费时间</th>
+            </tr>
+
+            {notempty name='list'}
+            {volist name='list' id='v'}
+            <tr class="h50">
+                <td align="center">{$v.id}</td>
+                <td align="center">{$v.consumer.user_name}</td>
+                <td align="center">{$v.amount|number_format=2}</td>
+                <td align="center">{$v.created_at}</td>
+            </tr>
+
+            {/volist}
+            {else/}
+            <tr class="h50"><td colspan="4" style="color: red" align="center">暂无数据</td></tr>
+            {/notempty}
+        </table>
+        <div class="pageCon" style="margin-top: 10px">
+            {$list->render()}
+        </div>
+    </div>
+</form>
+
+<script src="__STATIC__/system/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    //执行一个laydate实例
+    laydate.render({
+        elem: '#date' //指定元素
+        ,range: true
+    });
+</script>
+
+</body>
+</html>

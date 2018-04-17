@@ -1,5 +1,6 @@
 <?php
 namespace app\index\controller;
+use app\system\model\Configs;
 /**
  * Created by PhpStorm.
  * User: Administrator
@@ -8,6 +9,8 @@ namespace app\index\controller;
  */
 class Company extends Base{
     public function company_info(){
-        return view();
+        $model=new Configs();
+        $data=$model->find();
+        return view('',['data'=>$data]);
     }
 }

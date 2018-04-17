@@ -1,5 +1,6 @@
 <?php
 namespace app\index\controller;
+use app\system\model\Cards;
 /**
  * Created by PhpStorm.
  * User: Administrator
@@ -8,13 +9,21 @@ namespace app\index\controller;
  */
 class Coupon extends Base{
     public function coupon_center(){
-        $list=array();
+        $consumer_id=2;
+        $list=Cards::all(['consumer_id'=>$consumer_id]);
+
         empty($list)?$view='card_volume':$view='coupon_center';
-        $view='coupon_center';
-        return view($view);
+        return view($view,['list'=>$list]);
     }
 
     public function coupon_info(){
-        return view();
+        $id=input('id');
+        if(!$id){
+            $this->error('错误请求!');
+        }
+        $data=Cards::get($id);
+
+
+        return view('',['data'=>$data]);
     }
 }

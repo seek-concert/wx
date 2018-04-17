@@ -87,7 +87,7 @@
 <div class="franchiser-main">
   <div class="franchiser-header">
     <div class="text">今日销量</div>
-    <div class="number">3996</div>
+    <div class="number">{$sum[0]}</div>
     <div class="scanning">
       <img src="__INDEX_IMG__/scanning.png" >
       <div>扫描</div>
@@ -103,17 +103,17 @@
       <div class="fran-item jinri">
         <span class="yuan"></span>
         <span>今日销量</span>
-        <span class="fr">3996</span>
+        <span class="fr">{$sum[0]}</span>
       </div>
       <div class="fran-item benzhou">
         <span class="yuan"></span>
         <span>本周销量</span>
-        <span class="fr">3996</span>
+        <span class="fr">{$sum[1]}</span>
       </div>
       <div class="fran-item benyue">
         <span class="yuan"></span>
         <span>本月销量</span>
-        <span class="fr">3996</span>
+        <span class="fr">{$sum[2]}</span>
       </div>
     </div>
 
@@ -126,7 +126,7 @@
     var data = {
         labels: [ "今日销量", "本周销量","本月销量"],
         datasets: [{
-            data: [15, 30, 55],
+            data: [{$sum[0]}, {$sum[1]}, {$sum[2]}],
             backgroundColor: [
                 'rgba(255, 210, 140, 1)',
                 'rgba(255, 140, 140, 1)',

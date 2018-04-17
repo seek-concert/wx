@@ -43,7 +43,10 @@
     font-size: 28px;
     color: #999;
   }
-
+  .layui-m-layercont{
+    color: #0a0a0a;
+    font-size: 24px;
+  }
 
   /* list container start */
 </style>
@@ -55,67 +58,47 @@
   <!-- search start -->
   <div class="search-header">
     <div class="search-container">
-      <i class="icon iconfont icon-sousuo"></i>
+      <i class="icon iconfont icon-sousuo" onclick="search()"></i>
       <div class="search-input">
-        <input type="text" name="" placeholder="搜索商家" >
+          <input type="text" name="search" placeholder="搜索商家" value='{$search|default=""}' />
       </div>
     </div>
   </div>
 
   <div class="merchants-list-container">
     <div class="merchants-list-content">
+      {volist name='franchisers' id='v'}
       <div class="merchants-item">
-        <div class="merchants-logo" style="background: url('__INDEX_IMG__/index_list_img1.png') no-repeat center center/205px 143px;">
-          <img src="__INDEX_IMG__/jiao1.png">
+        <div class="merchants-logo" style="background: url('{$v.img}') no-repeat center center/205px 143px;">
+          {eq name='v.mark' value='1'} <img src="__INDEX_IMG__/jiao1.png">{else/} <img src="__INDEX_IMG__/jiao2.png">{/eq}
         </div>
         <div class="merchants-info">
-          <p class="merchants-name">商家名称：简租</p>
+          <p class="merchants-name">商家名称：{$v.name}</p>
           <p class="merchants-addr">
             <i class="icon iconfont icon-dizhi"></i>
-            <span>重庆市渝北区杨柳北路29号</span>
+            <span>{$v.address}</span>
           </p>
           <p class="merchants-tel">
             <i class="icon iconfont icon-dianhua"></i>
-            <span>02352433464</span>
+            <span>{$v.tel}</span>
           </p>
         </div>
       </div>
-      <div class="merchants-item">
-        <div class="merchants-logo" style="background: url('__INDEX_IMG__/index_list_img2.png') no-repeat center center/205px 143px;">
-          <img src="__INDEX_IMG__/jiao2.png">
-        </div>
-        <div class="merchants-info">
-          <p class="merchants-name">商家名称：简租</p>
-          <p class="merchants-addr">
-            <i class="icon iconfont icon-dizhi"></i>
-            <span>重庆市渝北区杨柳北路29号</span>
-          </p>
-          <p class="merchants-tel">
-            <i class="icon iconfont icon-dianhua"></i>
-            <span>02352433464</span>
-          </p>
-        </div>
-      </div>
-      <div class="merchants-item">
-        <div class="merchants-logo" style="background: url('__INDEX_IMG__/index_list_img1.png') no-repeat center center/205px 143px;">
-          <img src="__INDEX_IMG__/jiao1.png">
-        </div>
-        <div class="merchants-info">
-          <p class="merchants-name">商家名称：简租</p>
-          <p class="merchants-addr">
-            <i class="icon iconfont icon-dizhi"></i>
-            <span>重庆市渝北区杨柳北路29号</span>
-          </p>
-          <p class="merchants-tel">
-            <i class="icon iconfont icon-dianhua"></i>
-            <span>02352433464</span>
-          </p>
-        </div>
-      </div>
+      {/volist}
     </div>
   </div>
 </div>
 </body>
+{/block}
+{block name='script'}
+<script src="__INDEX_JS__/jquery.min.js?v={:date('Ymd')}" type="text/javascript" charset="utf-8"></script>
+<script src="__INDEX__/layer/mobile/layer.js?v={:date('Ymd')}" type="text/javascript" charset="utf-8"></script>
+<script>
+  function search() {
+      var search=$('input[name="search"]').val();
+      window.location.href="{:url('merchants_list')}?search="+ search;
+  }
+</script>
 {/block}
 
 

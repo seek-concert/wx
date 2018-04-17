@@ -19,6 +19,6 @@ class Configs extends Model
     protected $autoWriteTimestamp = true;
     protected $field=true;
     protected $type = [
-
+        'company_img'=>'array'
     ];
 }

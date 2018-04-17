@@ -1,5 +1,6 @@
 <?php
 namespace app\index\controller;
+use app\system\model\Consumers;
 /**
  * Created by PhpStorm.
  * User: Administrator
@@ -8,6 +9,19 @@ namespace app\index\controller;
  */
 class Index extends Base{
     public function index(){
-        return view();
+        if(input('key')){
+            $superior=Consumers::get(['key'=>input('key')]);
+            $consumer=Consumers::get(session('consumer.id'));
+            $consumer->pid=$superior->id;
+            $consumer->save();
+        }
+        $franchisers=db('franchisee')->order('id')->limit(3)->select();
+        return view('',['franchisers'=>$franchisers]);
+    }
+
+    public function test(){
+        echo phpinfo();
+        $page=db('config')->value('company');
+        return view('',['page'=>$page]);
     }
 }

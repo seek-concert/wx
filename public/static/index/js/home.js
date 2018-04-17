@@ -459,6 +459,39 @@ function searchList(){
     })
 }
 
+/*异步提交信息*/
+function ajaxRequest(url,data,msg) {
+
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        dataType: "json",
+        success: function(data){
+            if(msg==''){
+                msg=data.msg;
+            }
+            if(data.url){
+                layer.open({
+                    content:msg
+                    ,time: 2
+                    ,end:function () {
+                        window.location.href=data.url;
+                    }
+                });
+            }else {
+                layer.open({
+                    content: msg
+                    ,time: 2
+                });
+            }
+        },
+        error:function () {
+            layer.open('网络错误，请稍后重试!')
+        }
+    });
+}
+
 
 
 

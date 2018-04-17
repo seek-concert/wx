@@ -10,7 +10,14 @@ class Merchant extends Base{
 
     /*加盟商列表*/
     public function merchants_list(){
-        return view();
+
+        $search=input('search');
+        $db=db('franchisee');
+        if($search){
+            $db->where('name','like',"%{$search}%");
+        }
+        $franchisers=$db->order('id')->select();
+        return view('',['franchisers'=>$franchisers,'search'=>$search]);
     }
 
 

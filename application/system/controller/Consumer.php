@@ -196,4 +196,41 @@ class Consumer extends Auth{
             return $this->error('操作失败');
         }
     }
+
+    /*购买信息*/
+    public function card(){
+        $id=input('id');
+        if(!$id){
+            return $this->error('错误操作');
+        }
+        $consumer=Consumers::get($id);
+        $model=new Cards();
+        $list=$model
+            ->where('consumer_id',$id)
+            ->order('created_at','desc')
+            ->paginate(10);
+
+        $datas['list']=$list;
+        $datas['consumer']=$consumer;
+        $this->assign($datas);
+        return view();
+    }
+
+    /*消费信息*/
+    public function consume(){
+        $id=input('id');
+        if(!$id){
+            return $this->error('错误操作');
+        }
+
+        $model=new Consumes();
+        $list=$model
+            ->where('consumer_id',$id)
+            ->order('created_at','desc')
+            ->paginate(10);
+
+        $datas['list']=$list;
+        $this->assign($datas);
+        return view();
+    }
 }

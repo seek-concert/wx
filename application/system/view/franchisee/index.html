@@ -16,7 +16,7 @@
                 <img src="__STATIC__/system/img/arrow_refresh.png"/>
                 重置</a>
         </li>
-        <li class="fgf" onclick="layerIfWindow('添加加盟商','{:url('add')}','','300')">
+        <li class="fgf" onclick="layerIfWindow('添加加盟商','{:url('add')}','','450')">
             <img src="__STATIC__/system/img/add.png"/>
             添加
         </li>
@@ -72,7 +72,8 @@
                 <td>{$v->created_at}</td>
                 <td>{$v->updated_at}</td>
                 <td>
-                    <button type="button" class="btn" onclick="layerIfWindow('详细信息',	'{:url('detail',['id'=>$v->id])}','','300')" >详细信息</button>
+                    <button type="button" class="btn" onclick="layerIfWindow('详细信息',	'{:url('detail',['id'=>$v->id])}','','450')" >详细信息</button>
+                    <button type="button" class="btn" onclick="layerIfWindow('销售情况',	'{:url('consume',['id'=>$v->id])}','','600')" >销售情况</button>
                     <button type="button" data-action="{:url('delete',['ids'=>$v->id])}" class="btn js-ajax-form-btn">删除</button>
                 </td>
             </tr>

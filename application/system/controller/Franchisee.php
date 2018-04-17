@@ -5,6 +5,7 @@
  * */
 namespace app\system\controller;
 use app\system\model\Franchisees;
+use app\system\model\Consumes;
 use think\Db;
 
 class Franchisee extends  Auth{
@@ -79,14 +80,17 @@ class Franchisee extends  Auth{
         $model=new Franchisees();
         if(request()->isPost()){
             $rules=[
-                'name'=>'require|length:4,255',
+                'name'=>'require|length:4,255|unique:franchisee',
                 'tel'=>'require',
+                'img'=>'require',
                 'address'=>'require|length:4,255'
             ];
             $msg=[
                 'name.require'=>'请输入公司名称',
                 'name.length'=>'公司名称不能少于4位',
+                'name.unique'=>'公司名称已存在',
                 'tel.require'=>'联系方式不能为空',
+                'img.require'=>'公司图片不能为空',
                 'address.require'=>'地址不能为空',
                 'address.length'=>'地址不能少于4位'
             ];
@@ -146,14 +150,17 @@ class Franchisee extends  Auth{
             return $this->error('错误操作');
         }
         $rules=[
-            'name'=>'require|length:4,255',
+            'name'=>'require|length:4,255|unique:franchisee,name,'.$id.',id',
             'tel'=>'require',
+            'img'=>'require',
             'address'=>'require|length:4,255'
         ];
         $msg=[
             'name.require'=>'请输入公司名称',
             'name.length'=>'名称不能少于4位',
+            'name.unique'=>'公司名称已存在',
             'tel.require'=>'联系方式不能为空',
+            'img.require'=>'公司图片不能为空',
             'address.require'=>'地址不能为空',
             'address.length'=>'地址不能少于4位'
         ];
@@ -184,5 +191,30 @@ class Franchisee extends  Auth{
         }else{
             return $this->error('删除失败');
         }
+    }
+
+    /*销售情况*/
+    public function consume(){
+        $id=input('id');
+        if(!$id){
+            return $this->error('错误操作');
+        }
+
+        $model=new Consumes();
+        $where['franchisee_id']=$id;
+        $model->where('franchisee_id',$id);
+
+        if(input('date')){
+            $arr=explode(' - ',input('date'));
+            $model->whereBetween('created_at',[strtotime($arr[0]),strtotime($arr[1])]);
+        }
+
+        $list=$model
+            ->order('created_at','desc')
+            ->paginate(10,false,['query'=>request()->param()]);
+
+        $datas['list']=$list;
+        $this->assign($datas);
+        return view();
     }
 }

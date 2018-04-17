@@ -76,6 +76,10 @@
     font-size: 32px;
     box-sizing: border-box;
   }
+  .layui-m-layercont{
+    font-size: 24px;
+    color: #0a0a0a;
+  }
   /* 购买产品 样式 end */
 </style>
 {/block}
@@ -100,9 +104,47 @@
     </div>
   </div>
 
-  <div class="buy-btn"><a href="javascript:;">立即购买</a></div>
+  <div class="buy-btn"><a href="javascript:;" id="buy" onclick="ajaxRequest('buy_product',{id:{$id}},'')">立即购买</a></div>
 </div>
 </body>
+{/block}
+{block name='script'}
+<script src="__INDEX_JS__/jquery.min.js?v={:date('Ymd')}" type="text/javascript" charset="utf-8"></script>
+<script src="__INDEX__/layer/mobile/layer.js?v={:date('Ymd')}" type="text/javascript" charset="utf-8"></script>
+<script src="__INDEX_JS__/home.js?v={:date('Ymd')}" type="text/javascript" charset="utf-8"></script>
+<script>
+
+  // function buy_now(id) {
+  //     $.ajax({
+  //         type: "POST",
+  //         url: "{:url('buy_product')}",
+  //         data: {id:id},
+  //         dataType: "json",
+  //         success: function(data){
+  //             if(data.url){
+  //                 layer.open({
+  //                     content:data.msg
+  //                     ,skin: 'msg'
+  //                     ,time: 2
+  //                     ,end:function () {
+  //                         window.location.href=data.url;
+  //                     }
+  //                 });
+  //             }else {
+  //                 layer.open({
+  //                     content: data.msg
+  //                     ,skin: 'msg'
+  //                     ,time: 2
+  //                 });
+  //             }
+  //         },
+  //         error:function () {
+  //             layer.open('网络错误，请稍后重试!')
+  //         }
+  //     });
+  // }
+
+</script>
 {/block}
 
 

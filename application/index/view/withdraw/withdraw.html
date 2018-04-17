@@ -86,6 +86,10 @@
   .cered{
     color: #ff051d;
   }
+  .layui-m-layercont{
+    color: #0a0a0a;
+    font-size: 24px;
+  }
 </style>
 {/block}
 
@@ -97,12 +101,12 @@
   </div>
   <div class="withd-input">
     <span>￥</span>
-    <input type="number" />
+    <input type="text" name="amount"/>
   </div>
   <div class="withd-yue">
     <span class="cr999">当前余额：</span>
-    <span class="cered">125.36</span>
-    <span class="butn">全部提现</span>
+    <span class="cered" id="all_cash">{$left|number_format=2}</span>
+    <span class="butn" onclick="all_cash()">全部提现</span>
   </div>
   <div class="withd-titl mt20">
     请选择提现方式
@@ -115,20 +119,84 @@
     请输入银行卡信息
   </div>
   <div class="withd-input">
-    <input type="number" placeholder="请输入银行卡号" />
+    <input name="card_number" type="text" placeholder="请输入银行卡号" value="{$bank_card.card_number|default=''}"/>
   </div>
   <div class="withd-input">
-    <input type="number" placeholder="请输入真实姓名" />
+    <input name="user_name" type="text" placeholder="请输入真实姓名" value="{$bank_card.user_name|default=''}"/>
   </div>
   <div class="withd-input">
-    <input type="number" placeholder="请输入银行预留手机号" />
+    <input name="phone" type="text" placeholder="请输入银行预留手机号" value="{$bank_card.phone|default=''}"/>
   </div>
   <div class="withd-botmbtn">
-    <button>确认提现</button>
+    <button onclick="withdraw()">确认提现</button>
   </div>
+  <input type="hidden" name="id" value="{$bank_card.id|default=''}"/>
+
 
 </div>
 </body>
+{/block}
+{block name='script'}
+<script src="__INDEX_JS__/jquery.min.js?v={:date('Ymd')}" type="text/javascript" charset="utf-8"></script>
+<script src="__INDEX__/layer/mobile/layer.js?v={:date('Ymd')}" type="text/javascript" charset="utf-8"></script>
+<script src="__INDEX_JS__/home.js?v={:date('Ymd')}" type="text/javascript" charset="utf-8"></script>
+<script>
+  function all_cash() {
+      $("input[name='amount']").val($('#all_cash').html());
+  }
+  
+  function withdraw() {
+      var amount=$("input[name='amount']").val(),
+          card_number=$("input[name='card_number']").val(),
+          user_name=$("input[name='user_name']").val(),
+          phone=$("input[name='phone']").val(),
+          id=$("input[name='id']").val();
+
+      if(amount==''){
+          layer.open({
+              content: '请输入提现金额',
+              time:2
+          });
+          $("input[name='cash']").focus();
+          return false;
+      }
+
+      if(card_number==""){
+          layer.open({
+              content: '请输入银行卡卡号',
+              time:2
+          });
+          $("input[name='card_number']").focus();
+          return false;
+      }
+
+      if(user_name==""){
+          layer.open({
+              content: '请输入真实姓名',
+              time:2
+          });
+          $("input[name='true_name']").focus();
+          return false;
+      }
+      if(phone==""){
+          layer.open({
+              content: '请输入银行预留手机号',
+              time:2
+          });
+          $("input[name='phone']").focus();
+          return false;
+      }
+
+      var data={amount:amount,
+                card_number: card_number,
+                user_name: user_name,
+                phone: phone,
+                id:id
+      };
+
+      ajaxRequest('withdraw',data,'提现申请成功！');
+  }
+</script>
 {/block}
 
 

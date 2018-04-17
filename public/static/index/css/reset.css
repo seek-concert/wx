@@ -24,7 +24,7 @@ body {
   outline: 1;
 }
 
-footer,header,nav,{ 
+footer,header,nav{
   display:block;
 }
 

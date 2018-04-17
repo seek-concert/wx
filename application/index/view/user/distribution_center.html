@@ -83,91 +83,25 @@
 
 <div class="distribution-center-main">
   <div class="distribution-list">
+    {volist name='list' id='v'}
     <div class="distribution-item">
       <div class="distribution-item-l">
         <div class="distribution-user-img">
-          <img src="__INDEX_IMG__/header_logo.jpg">
+          <img src="{$v.avatar}">
         </div>
         <i class="icon yes"></i>
       </div>
       <div class="distribution-item-r">
         <p class="distribution-user-name">
-          潇洒亼◇生
+          {$v.user_name}
         </p>
-        <p class="distribution-user-money">消费金额：<span class="money">1980</span>元</p>
+        {gt name='v.consume_total' value='0'}
+        <p class="distribution-user-money">消费金额：<span class="money">{$v.consume_total}</span>元</p>
+        {/gt}
       </div>
     </div>
+    {/volist}
 
-    <div class="distribution-item">
-      <div class="distribution-item-l">
-        <div class="distribution-user-img">
-          <img src="__INDEX_IMG__/header_logo.jpg">
-        </div>
-        <i class="icon no"></i>
-      </div>
-      <div class="distribution-item-r">
-        <p class="distribution-user-name">
-          辅分散剂
-        </p>
-      </div>
-    </div>
-
-    <div class="distribution-item">
-      <div class="distribution-item-l">
-        <div class="distribution-user-img">
-          <img src="__INDEX_IMG__/header_logo.jpg">
-        </div>
-        <i class="icon yes"></i>
-      </div>
-      <div class="distribution-item-r">
-        <p class="distribution-user-name">
-          潇洒亼◇生
-        </p>
-        <p class="distribution-user-money">消费金额：<span class="money">1980</span>元</p>
-      </div>
-    </div>
-
-    <div class="distribution-item">
-      <div class="distribution-item-l">
-        <div class="distribution-user-img">
-          <img src="__INDEX_IMG__/header_logo.jpg">
-        </div>
-        <i class="icon no"></i>
-      </div>
-      <div class="distribution-item-r">
-        <p class="distribution-user-name">
-          辅分散剂
-        </p>
-      </div>
-    </div>
-    <div class="distribution-item">
-      <div class="distribution-item-l">
-        <div class="distribution-user-img">
-          <img src="__INDEX_IMG__/header_logo.jpg">
-        </div>
-        <i class="icon yes"></i>
-      </div>
-      <div class="distribution-item-r">
-        <p class="distribution-user-name">
-          潇洒亼◇生
-        </p>
-        <p class="distribution-user-money">消费金额：<span class="money">1980</span>元</p>
-      </div>
-    </div>
-
-    <div class="distribution-item">
-      <div class="distribution-item-l">
-        <div class="distribution-user-img">
-          <img src="__INDEX_IMG__/header_logo.jpg">
-        </div>
-        <i class="icon no"></i>
-      </div>
-      <div class="distribution-item-r">
-        <p class="distribution-user-name">
-          辅分散剂
-        </p>
-      </div>
-    </div>
   </div>
 </div>
 </body>

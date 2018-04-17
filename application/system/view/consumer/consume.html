@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>消费信息|后台管理系统</title>
+    {include file="public/head" /}
+</head>
+<body>
+<div class="layerCon bg_f">
+    <table class="layerTable" border="1px">
+
+        <tr class="h50">
+            <th>ID</th>
+            <th>扣费卡券</th>
+            <th>消费金额</th>
+            <th>消费时间</th>
+            <th>消费代理商</th>
+        </tr>
+
+        {notempty name='list'}
+        {volist name='list' id='v'}
+        <tr class="h50">
+            <td align="center">{$v.id}</td>
+            <td align="center">{$v.card.number}</td>
+            <td align="center">{$v.amount|number_format=2}</td>
+            <td align="center">{$v.created_at}</td>
+            <td align="center">{$v.franchisee.name}</td>
+        </tr>
+
+        {/volist}
+        {else/}
+        <tr class="h50"><td colspan="6" style="color: red" align="center">暂无数据</td></tr>
+        {/notempty}
+    </table>
+    <div class="pageCon" style="margin-top: 10px">
+        {$list->render()}
+    </div>
+</div>
+
+</body>
+</html>

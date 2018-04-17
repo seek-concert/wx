@@ -255,54 +255,24 @@
       </div>
     </div>
     <div class="merchants-list-content">
+      {volist name='franchisers' id='v'}
       <div class="merchants-item">
-        <div class="merchants-logo" style="background: url('__INDEX_IMG__/index_list_img1.png') no-repeat center center/205px 143px;">
-          <img src="__INDEX_IMG__/jiao1.png">
+        <div class="merchants-logo" style="background: url('{$v.img}') no-repeat center center/205px 143px;">
+          {eq name='v.mark' value='1'} <img src="__INDEX_IMG__/jiao1.png">{else/} <img src="__INDEX_IMG__/jiao2.png">{/eq}
         </div>
         <div class="merchants-info">
-          <p class="merchants-name">商家名称：简租</p>
+          <p class="merchants-name">商家名称：{$v.name}</p>
           <p class="merchants-addr">
             <i class="icon iconfont icon-dizhi"></i>
-            <span>重庆市渝北区杨柳北路29号</span>
+            <span>{$v.address}</span>
           </p>
           <p class="merchants-tel">
             <i class="icon iconfont icon-dianhua"></i>
-            <span>02352433464</span>
+            <span>{$v.tel}</span>
           </p>
         </div>
       </div>
-      <div class="merchants-item">
-        <div class="merchants-logo" style="background: url('__INDEX_IMG__/index_list_img2.png') no-repeat center center/205px 143px;">
-          <img src="__INDEX_IMG__/jiao2.png">
-        </div>
-        <div class="merchants-info">
-          <p class="merchants-name">商家名称：简租</p>
-          <p class="merchants-addr">
-            <i class="icon iconfont icon-dizhi"></i>
-            <span>重庆市渝北区杨柳北路29号</span>
-          </p>
-          <p class="merchants-tel">
-            <i class="icon iconfont icon-dianhua"></i>
-            <span>02352433464</span>
-          </p>
-        </div>
-      </div>
-      <div class="merchants-item">
-        <div class="merchants-logo" style="background: url('__INDEX_IMG__/index_list_img1.png') no-repeat center center/205px 143px;">
-          <img src="__INDEX_IMG__/jiao1.png">
-        </div>
-        <div class="merchants-info">
-          <p class="merchants-name">商家名称：简租</p>
-          <p class="merchants-addr">
-            <i class="icon iconfont icon-dizhi"></i>
-            <span>重庆市渝北区杨柳北路29号</span>
-          </p>
-          <p class="merchants-tel">
-            <i class="icon iconfont icon-dianhua"></i>
-            <span>02352433464</span>
-          </p>
-        </div>
-      </div>
+      {/volist}
     </div>
   </div>
 

@@ -35,7 +35,27 @@
             </tr>
             <tr class="h50">
                 <td>公司简介：</td>
-                <td colspan="3"><textarea name="company" id="company" placeholder="请输入公司简介" >{:isset($infos->company)?$infos->company:''}</textarea></td>
+                <td colspan="3">
+                    <textarea name="company_info" id="company_info" placeholder="请输入公司简介" >{:isset($infos->company)?$infos->company:''}</textarea>
+                </td>
+            </tr>
+            <tr class="h50">
+                <td>配图：</td>
+                <td class="imgCon" colspan="3">
+                    {if condition="isset($infos) and $infos->company_img"}
+                    {foreach $infos->company_img as $imgs}
+                    <div class="img">
+                        <img src="{$imgs}" class="w_100 h_100" onclick="bigimg(this)">
+                        <p><span onclick="picremove(this);">删除</span></p>
+                        <input type="hidden" name="company_img[]" value="{$imgs}">
+                    </div>
+                    {/foreach}
+                    {/if}
+                    <div class="img upload-btn">
+                        <input type="file" name="upload_files" multiple style="display: none" class="upload_files" data-hiddenname="company_img[]" data-url="{:url('Tools/upload_img')}">
+                        <a>+</a>
+                    </div>
+                </td>
             </tr>
             <!--<tr class="h50">-->
                 <!--<td>LOGO：</td>-->
@@ -177,30 +197,7 @@
             }
         });
     });
-    KindEditor.ready(function(K) {
-        window.editor = K.create('#company',{
-            width : '100%',
-            minHeight:'300',
-            uploadJson : upload_url,
-            fileManagerJson : filemanager_url,
-            allowFileManager : true,
-            items:['source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
-                'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
-                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
-                'superscript', 'clearhtml', 'quickformat', 'selectall', '/',
-                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
-                'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
-                'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
-                'anchor', 'link', 'unlink', '|', 'about'],
-            afterBlur:function () {
-                editor.sync();
-            },
-            autoHeightMode : true,
-            afterCreate : function() {
-                this.loadPlugin('autoheight');
-            }
-        });
-    });
+
     /*======二维码======*/
     $('#btn-getqrcode').click(function () {
         var _this=$(this);

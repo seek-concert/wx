@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$consumer.user_name}-购买信息|后台管理系统</title>
+    {include file="public/head" /}
+</head>
+<body>
+<div class="layerCon bg_f">
+    <table class="layerTable" border="1px">
+
+        <tr class="h50">
+            <th>ID</th>
+            <th>卡券编号</th>
+            <th>总金额</th>
+            <th>消费金额</th>
+            <th>剩余金额</th>
+            <th>购买时间</th>
+        </tr>
+
+        {notempty name='list'}
+        {volist name='list' id='v'}
+        <tr class="h50">
+            <td align="center">{$v.id}</td>
+            <td align="center">{$v.number}</td>
+            <td align="center">{$v.total|number_format=2}</td>
+            <td align="center">{$v.consumed|number_format=2}</td>
+            <td align="center">{$v.remaining|number_format=2}</td>
+            <td align="center">{$v.created_at}</td>
+        </tr>
+
+        {/volist}
+        {else/}
+        <tr class="h50"><td colspan="6" style="color: red" align="center">暂无数据</td></tr>
+        {/notempty}
+    </table>
+    <div class="pageCon" style="margin-top: 10px">
+        {$list->render()}
+    </div>
+</div>
+
+</body>
+</html>
