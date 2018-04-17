@@ -28,7 +28,7 @@ var loadStateData = function()
 
 // *************************************************************************************************
 
-// load Firebug Lite application
+// load Firebug Lite app
 var loadFirebug = function()
 {
     document.documentElement.setAttribute("debug", isOpen);
@@ -127,7 +127,7 @@ chrome.extension.onRequest.addListener
             loadStateData();
             sendResponse({value: ""+isActive});
         }
-        // load Firebug Lite application
+        // load Firebug Lite app
         else if (request.name == "FB_loadFirebug")
         {
             setTimeout(function(){
@@ -149,11 +149,11 @@ chrome.extension.onRequest.addListener
             sendResponse({});
         }
         // handle context menu click by sending "FB_contextMenuClick" message 
-        // to Firebug Lite application
+        // to Firebug Lite app
         else if (request.name == "FB_contextMenuClick")
         {
             // TODO: if not active, activate first, wait the activation to complete
-            // and only then dispatch the event to Firebug Lite application
+            // and only then dispatch the event to Firebug Lite app
             if (isActive)
                 firebugDispatch("FB_contextMenuClick,"+contextMenuElementXPath);
             else
@@ -310,7 +310,7 @@ var listenKeyboardActivation = function()
 
 var stopListeningKeyboardActivation = function()
 {
-    // TODO: remove listener when Firebug Lite application is activated/loaded
+    // TODO: remove listener when Firebug Lite app is activated/loaded
 
     // TODO: remove listener on window onunload (if not removed already)
     if (isListeningKeyboardActivation)

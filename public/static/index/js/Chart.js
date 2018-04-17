@@ -6557,7 +6557,7 @@ module.exports = {
 		totalBottomBoxesHeight += Math.max(maxVerticalBottomPadding - totalBottomBoxesHeight, 0);
 
 		// Figure out if our chart area changed. This would occur if the dataset layout label rotation
-		// changed due to the application of the margins in step 6. Since we can only get bigger, this is safe to do
+		// changed due to the app of the margins in step 6. Since we can only get bigger, this is safe to do
 		// without calling `fit` again
 		var newMaxChartAreaHeight = height - totalTopBoxesHeight - totalBottomBoxesHeight;
 		var newMaxChartAreaWidth = width - totalLeftBoxesWidth - totalRightBoxesWidth;

@@ -103,7 +103,7 @@ class Common{
         curl_setopt($ci, CURLOPT_RETURNTRANSFER, true);//将curl_exec()获取的信息以文件流的形式返回，而不是直接输出。
         switch ($method) {
             case "POST":
-                curl_setopt($ci, CURLOPT_POST, true);//启用时会发送一个常规的POST请求，类型为：application/x-www-form-urlencoded，就像表单提交的一样。
+                curl_setopt($ci, CURLOPT_POST, true);//启用时会发送一个常规的POST请求，类型为：app/x-www-form-urlencoded，就像表单提交的一样。
                 if (!empty($postfields)) {
                     $tmpdatastr = is_array($postfields) ? http_build_query($postfields) : $postfields;
                     curl_setopt($ci, CURLOPT_POSTFIELDS, $tmpdatastr);

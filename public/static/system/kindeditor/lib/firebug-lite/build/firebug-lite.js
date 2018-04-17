@@ -67,7 +67,7 @@ this.isIEQuiksMode=this.isIE&&this.isQuiksMode;
 this.isIEStantandMode=this.isIE&&!this.isQuiksMode;
 this.noFixedPosition=this.isIE6||this.isIEQuiksMode;
 if(FBL.Env.Options.enableTrace){FBTrace.initialize()
-}if(FBTrace.DBG_INITIALIZE&&isChromeContext){FBTrace.sysout("FBL.initialize - persistent application","initialize chrome context")
+}if(FBTrace.DBG_INITIALIZE&&isChromeContext){FBTrace.sysout("FBL.initialize - persistent app","initialize chrome context")
 }if(FBTrace.DBG_INITIALIZE){FBTrace.sysout("FBL.initialize",namespaces.length/2+" namespaces BEGIN")
 }for(var i=0;
 i<namespaces.length;
@@ -1347,7 +1347,7 @@ i<progid.length;
 }catch(e){continue
 }break
 }}finally{return xhrObj
-}},request:function(options){var o=FBL.extend({type:"get",async:true,dataType:"text",contentType:"application/x-www-form-urlencoded"},options||{});
+}},request:function(options){var o=FBL.extend({type:"get",async:true,dataType:"text",contentType:"app/x-www-form-urlencoded"},options||{});
 this.requests.push(o);
 var s=this.getState();
 if(s=="Uninitialized"||s=="Complete"||s=="Loaded"){this.sendRequest()
@@ -1481,7 +1481,7 @@ var panelTypes=[];
 var panelTypeMap={};
 var reps=[];
 var parentPanelMap={};
-window.Firebug=FBL.Firebug={version:"Firebug Lite 1.3.2",revision:"$Revision: 9760 $",modules:modules,panelTypes:panelTypes,panelTypeMap:panelTypeMap,reps:reps,initialize:function(){if(FBTrace.DBG_INITIALIZE){FBTrace.sysout("Firebug.initialize","initializing application")
+window.Firebug=FBL.Firebug={version:"Firebug Lite 1.3.2",revision:"$Revision: 9760 $",modules:modules,panelTypes:panelTypes,panelTypeMap:panelTypeMap,reps:reps,initialize:function(){if(FBTrace.DBG_INITIALIZE){FBTrace.sysout("Firebug.initialize","initializing app")
 }Firebug.browser=new Context(Env.browser);
 Firebug.context=Firebug.browser;
 cacheDocument();
@@ -2416,7 +2416,7 @@ iconButton.initialize()
 },initialize:function(){if(Env.bookmarkletOutdated){Firebug.Console.logFormatted(["A new bookmarklet version is available. Please visit http://getfirebug.com/firebuglite#Install and update it."],Firebug.context,"warn")
 }if(Firebug.Console){Firebug.Console.flush()
 }if(Firebug.Trace){FBTrace.flush(Firebug.Trace)
-}if(FBTrace.DBG_INITIALIZE){FBTrace.sysout("Firebug.chrome.initialize","initializing chrome application")
+}if(FBTrace.DBG_INITIALIZE){FBTrace.sysout("Firebug.chrome.initialize","initializing chrome app")
 }Controller.initialize.call(this);
 PanelBar.initialize.call(this);
 fbTop=$("fbTop");
@@ -5723,7 +5723,7 @@ if(name.length>limit){return name
 },hideResponse:function(file){return false
 },hideCache:function(file){return true;
 return !file.cacheEntry
-},hideHtml:function(file){return(file.mimeType!="text/html")&&(file.mimeType!="application/xhtml+xml")
+},hideHtml:function(file){return(file.mimeType!="text/html")&&(file.mimeType!="app/xhtml+xml")
 },onClickTab:function(event){this.selectTab(event.currentTarget||event.srcElement)
 },getParamValueIterator:function(param){return param.value;
 return wrapText(param.value,true)
@@ -5843,12 +5843,12 @@ if(file.responseHeadersText){removeClass(viewSource,"collapsed")
 }this.insertHeaderRows(parent,headers,rowName)
 }});
 var NetInfoHeaders=Firebug.NetMonitor.NetInfoHeaders;
-Firebug.NetMonitor.NetInfoPostData=domplate(Firebug.Rep,{paramsTable:TABLE({"class":"netInfoPostParamsTable",cellpadding:0,cellspacing:0,role:"presentation"},TBODY({role:"list","aria-label":$STR("net.label.Parameters")},TR({"class":"netInfoPostParamsTitle",role:"presentation"},TD({colspan:3,role:"presentation"},DIV({"class":"netInfoPostParams"},$STR("net.label.Parameters"),SPAN({"class":"netInfoPostContentType"},"application/x-www-form-urlencoded")))))),partsTable:TABLE({"class":"netInfoPostPartsTable",cellpadding:0,cellspacing:0,role:"presentation"},TBODY({role:"list","aria-label":$STR("net.label.Parts")},TR({"class":"netInfoPostPartsTitle",role:"presentation"},TD({colspan:2,role:"presentation"},DIV({"class":"netInfoPostParams"},$STR("net.label.Parts"),SPAN({"class":"netInfoPostContentType"},"multipart/form-data")))))),jsonTable:TABLE({"class":"netInfoPostJSONTable",cellpadding:0,cellspacing:0,role:"presentation"},TBODY({role:"list","aria-label":$STR("JSON")},TR({"class":"netInfoPostJSONTitle",role:"presentation"},TD({role:"presentation"},DIV({"class":"netInfoPostParams"},$STR("JSON")))),TR(TD({"class":"netInfoPostJSONBody"})))),xmlTable:TABLE({"class":"netInfoPostXMLTable",cellpadding:0,cellspacing:0,role:"presentation"},TBODY({role:"list","aria-label":$STR("xmlviewer.tab.XML")},TR({"class":"netInfoPostXMLTitle",role:"presentation"},TD({role:"presentation"},DIV({"class":"netInfoPostParams"},$STR("xmlviewer.tab.XML")))),TR(TD({"class":"netInfoPostXMLBody"})))),sourceTable:TABLE({"class":"netInfoPostSourceTable",cellpadding:0,cellspacing:0,role:"presentation"},TBODY({role:"list","aria-label":$STR("net.label.Source")},TR({"class":"netInfoPostSourceTitle",role:"presentation"},TD({colspan:2,role:"presentation"},DIV({"class":"netInfoPostSource"},$STR("net.label.Source")))))),sourceBodyTag:TR({role:"presentation"},TD({colspan:2,role:"presentation"},FOR("line","$param|getParamValueIterator",CODE({"class":"focusRow subFocusRow",role:"listitem"},"$line")))),getParamValueIterator:function(param){return NetInfoBody.getParamValueIterator(param)
+Firebug.NetMonitor.NetInfoPostData=domplate(Firebug.Rep,{paramsTable:TABLE({"class":"netInfoPostParamsTable",cellpadding:0,cellspacing:0,role:"presentation"},TBODY({role:"list","aria-label":$STR("net.label.Parameters")},TR({"class":"netInfoPostParamsTitle",role:"presentation"},TD({colspan:3,role:"presentation"},DIV({"class":"netInfoPostParams"},$STR("net.label.Parameters"),SPAN({"class":"netInfoPostContentType"},"app/x-www-form-urlencoded")))))),partsTable:TABLE({"class":"netInfoPostPartsTable",cellpadding:0,cellspacing:0,role:"presentation"},TBODY({role:"list","aria-label":$STR("net.label.Parts")},TR({"class":"netInfoPostPartsTitle",role:"presentation"},TD({colspan:2,role:"presentation"},DIV({"class":"netInfoPostParams"},$STR("net.label.Parts"),SPAN({"class":"netInfoPostContentType"},"multipart/form-data")))))),jsonTable:TABLE({"class":"netInfoPostJSONTable",cellpadding:0,cellspacing:0,role:"presentation"},TBODY({role:"list","aria-label":$STR("JSON")},TR({"class":"netInfoPostJSONTitle",role:"presentation"},TD({role:"presentation"},DIV({"class":"netInfoPostParams"},$STR("JSON")))),TR(TD({"class":"netInfoPostJSONBody"})))),xmlTable:TABLE({"class":"netInfoPostXMLTable",cellpadding:0,cellspacing:0,role:"presentation"},TBODY({role:"list","aria-label":$STR("xmlviewer.tab.XML")},TR({"class":"netInfoPostXMLTitle",role:"presentation"},TD({role:"presentation"},DIV({"class":"netInfoPostParams"},$STR("xmlviewer.tab.XML")))),TR(TD({"class":"netInfoPostXMLBody"})))),sourceTable:TABLE({"class":"netInfoPostSourceTable",cellpadding:0,cellspacing:0,role:"presentation"},TBODY({role:"list","aria-label":$STR("net.label.Source")},TR({"class":"netInfoPostSourceTitle",role:"presentation"},TD({colspan:2,role:"presentation"},DIV({"class":"netInfoPostSource"},$STR("net.label.Source")))))),sourceBodyTag:TR({role:"presentation"},TD({colspan:2,role:"presentation"},FOR("line","$param|getParamValueIterator",CODE({"class":"focusRow subFocusRow",role:"listitem"},"$line")))),getParamValueIterator:function(param){return NetInfoBody.getParamValueIterator(param)
 },render:function(context,parentNode,file){var spy=getAncestorByClass(parentNode,"spyHead");
 var spyObject=spy.repObject;
 var data=spyObject.data;
 var contentType=file.mimeType;
-if(contentType&&contentType=="application/x-www-form-urlencoded"||data&&data.indexOf("=")!=-1){var params=parseURLEncodedTextArray(data);
+if(contentType&&contentType=="app/x-www-form-urlencoded"||data&&data.indexOf("=")!=-1){var params=parseURLEncodedTextArray(data);
 if(params){this.insertParameters(parentNode,params)
 }}var jsonData={responseText:data};
 if(Firebug.JSONViewerModel.isJSON(contentType,data)){this.insertJSON(parentNode,jsonData,context)
@@ -5936,9 +5936,9 @@ if(file.postText.length>limit&&!noLimit){return cropString(file.postText,limit,"
 }return file.postText
 },getResponseText:function(file,context){return(typeof(file.responseText)!="undefined")?file.responseText:context.sourceCache.loadText(file.href,file.method,file)
 },isURLEncodedRequest:function(file,context){var text=Utils.getPostText(file,context);
-if(text&&text.toLowerCase().indexOf("content-type: application/x-www-form-urlencoded")==0){return true
+if(text&&text.toLowerCase().indexOf("content-type: app/x-www-form-urlencoded")==0){return true
 }var headerValue=Utils.findHeader(file.requestHeaders,"content-type");
-if(headerValue&&headerValue.indexOf("application/x-www-form-urlencoded")==0){return true
+if(headerValue&&headerValue.indexOf("app/x-www-form-urlencoded")==0){return true
 }return false
 },isMultiPartRequest:function(file,context){var text=Utils.getPostText(file,context);
 if(text&&text.toLowerCase().indexOf("content-type: multipart/form-data")==0){return true
@@ -6120,7 +6120,7 @@ return parseJSONString(jsonString)
 }});
 Firebug.registerModule(Firebug.JSONViewerModel)
 }});
-FBL.ns(function(){with(FBL){var xmlContentTypes=["text/xml","application/xml","application/xhtml+xml","application/rss+xml","application/atom+xml",,"application/vnd.mozilla.maybe.feed","application/rdf+xml","application/vnd.mozilla.xul+xml"];
+FBL.ns(function(){with(FBL){var xmlContentTypes=["text/xml","app/xml","app/xhtml+xml","app/rss+xml","app/atom+xml",,"app/vnd.mozilla.maybe.feed","app/rdf+xml","app/vnd.mozilla.xul+xml"];
 Firebug.XMLViewerModel=extend(Firebug.Module,{dispatchName:"xmlViewer",initialize:function(){Firebug.Module.initialize.apply(this,arguments);
 Firebug.NetMonitor.NetInfoBody.addListener(this)
 },shutdown:function(){Firebug.Module.shutdown.apply(this,arguments);

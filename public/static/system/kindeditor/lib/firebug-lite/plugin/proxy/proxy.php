@@ -242,7 +242,7 @@ if ( $_GET['mode'] == 'native' ) {
   
   // Generate appropriate content-type header.
   $is_xhr = strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
-  header( 'Content-type: application/' . ( $is_xhr ? 'json' : 'x-javascript' ) );
+  header( 'Content-type: app/' . ( $is_xhr ? 'json' : 'x-javascript' ) );
   header('Access-Control-Allow-Origin: *');
   
   // Get JSONP callback.

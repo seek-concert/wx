@@ -98,7 +98,7 @@ this.initialize = function()
     // check if the actual window is a persisted chrome context
     var isChromeContext = window.Firebug && typeof window.Firebug.SharedEnv == "object";
 
-    // chrome context of the persistent application
+    // chrome context of the persistent app
     if (isChromeContext)
     {
         // TODO: xxxpedro persist - make a better synchronization
@@ -109,7 +109,7 @@ this.initialize = function()
         FBL.Env.isChromeContext = true;
         FBTrace.messageQueue = FBL.Env.traceMessageQueue;
     }
-    // non-persistent application
+    // non-persistent app
     else
     {
         FBL.NS = document.documentElement.namespaceURI;
@@ -119,7 +119,7 @@ this.initialize = function()
         if (document.documentElement.getAttribute("debug") == "true")
             FBL.Env.Options.startOpened = true;
 
-        // find the URL location of the loaded application
+        // find the URL location of the loaded app
         findLocation();
 
         // TODO: get preferences here...
@@ -155,7 +155,7 @@ this.initialize = function()
     // after creating/synchronizing the environment, initialize the FBTrace module
     if (FBL.Env.Options.enableTrace) FBTrace.initialize();
 
-    if (FBTrace.DBG_INITIALIZE && isChromeContext) FBTrace.sysout("FBL.initialize - persistent application", "initialize chrome context");
+    if (FBTrace.DBG_INITIALIZE && isChromeContext) FBTrace.sysout("FBL.initialize - persistent app", "initialize chrome context");
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // initialize namespaces
@@ -222,10 +222,10 @@ var onDocumentLoad = function onDocumentLoad()
     if (FBL.isIE6)
         fixIE6BackgroundImageCache();
 
-    // chrome context of the persistent application
+    // chrome context of the persistent app
     if (FBL.Env.Options.enablePersistent && FBL.Env.isChromeContext)
     {
-        // finally, start the application in the chrome context
+        // finally, start the app in the chrome context
         FBL.Firebug.initialize();
 
         // if is not development mode, remove the shared environment cache object
@@ -236,7 +236,7 @@ var onDocumentLoad = function onDocumentLoad()
             sharedEnv = null;
         }
     }
-    // non-persistent application
+    // non-persistent app
     else
     {
         FBL.FirebugChrome.create();
@@ -5779,7 +5779,7 @@ this.Ajax =
      * @param {String}   options.type          Request type ("get" ou "post"). Default is "get".
      * @param {Boolean}  options.async         Asynchronous flag. Default is "true".
      * @param {String}   options.dataType      Data type ("text", "html", "xml" or "json"). Default is "text".
-     * @param {String}   options.contentType   Content-type of the data being sent. Default is "application/x-www-form-urlencoded".
+     * @param {String}   options.contentType   Content-type of the data being sent. Default is "app/x-www-form-urlencoded".
      * @param {Function} options.onLoading     onLoading callback
      * @param {Function} options.onLoaded      onLoaded callback
      * @param {Function} options.onInteractive onInteractive callback
@@ -5797,7 +5797,7 @@ this.Ajax =
                     type: "get",
                     async: true,
                     dataType: "text",
-                    contentType: "application/x-www-form-urlencoded"
+                    contentType: "app/x-www-form-urlencoded"
                 },
                 options || {}
             );
@@ -6207,7 +6207,7 @@ window.Firebug = FBL.Firebug =
 
     initialize: function()
     {
-        if (FBTrace.DBG_INITIALIZE) FBTrace.sysout("Firebug.initialize", "initializing application");
+        if (FBTrace.DBG_INITIALIZE) FBTrace.sysout("Firebug.initialize", "initializing app");
 
         Firebug.browser = new Context(Env.browser);
         Firebug.context = Firebug.browser;
@@ -9586,7 +9586,7 @@ var onChromeLoad = function onChromeLoad(chrome)
     {
         if (chrome.type == "frame" || chrome.type == "div")
         {
-            // initialize the chrome application
+            // initialize the chrome app
             setTimeout(function(){
                 FBL.Firebug.initialize();
             },0);
@@ -10057,7 +10057,7 @@ append(ChromeBase,
             FBTrace.flush(Firebug.Trace);
 
         // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-        if (FBTrace.DBG_INITIALIZE) FBTrace.sysout("Firebug.chrome.initialize", "initializing chrome application");
+        if (FBTrace.DBG_INITIALIZE) FBTrace.sysout("Firebug.chrome.initialize", "initializing chrome app");
 
         // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
         // initialize inherited classes
@@ -21137,7 +21137,7 @@ Firebug.NetMonitor.NetInfoBody = domplate(Firebug.Rep, new Firebug.Listener(),
 
     hideHtml: function(file)
     {
-        return (file.mimeType != "text/html") && (file.mimeType != "application/xhtml+xml");
+        return (file.mimeType != "text/html") && (file.mimeType != "app/xhtml+xml");
     },
 
     onClickTab: function(event)
@@ -21545,7 +21545,7 @@ var NetInfoHeaders = Firebug.NetMonitor.NetInfoHeaders;
  */
 Firebug.NetMonitor.NetInfoPostData = domplate(Firebug.Rep, /*new Firebug.Listener(),*/
 {
-    // application/x-www-form-urlencoded
+    // app/x-www-form-urlencoded
     paramsTable:
         TABLE({"class": "netInfoPostParamsTable", cellpadding: 0, cellspacing: 0, "role": "presentation"},
             TBODY({"role": "list", "aria-label": $STR("net.label.Parameters")},
@@ -21554,7 +21554,7 @@ Firebug.NetMonitor.NetInfoPostData = domplate(Firebug.Rep, /*new Firebug.Listene
                         DIV({"class": "netInfoPostParams"},
                             $STR("net.label.Parameters"),
                             SPAN({"class": "netInfoPostContentType"},
-                                "application/x-www-form-urlencoded"
+                                "app/x-www-form-urlencoded"
                             )
                         )
                     )
@@ -21579,7 +21579,7 @@ Firebug.NetMonitor.NetInfoPostData = domplate(Firebug.Rep, /*new Firebug.Listene
             )
         ),
 
-    // application/json
+    // app/json
     jsonTable:
         TABLE({"class": "netInfoPostJSONTable", cellpadding: 0, cellspacing: 0, "role": "presentation"},
             ///TBODY({"role": "list", "aria-label": $STR("jsonviewer.tab.JSON")},
@@ -21598,7 +21598,7 @@ Firebug.NetMonitor.NetInfoPostData = domplate(Firebug.Rep, /*new Firebug.Listene
             )
         ),
 
-    // application/xml
+    // app/xml
     xmlTable:
         TABLE({"class": "netInfoPostXMLTable", cellpadding: 0, cellspacing: 0, "role": "presentation"},
             TBODY({"role": "list", "aria-label": $STR("xmlviewer.tab.XML")},
@@ -21658,7 +21658,7 @@ Firebug.NetMonitor.NetInfoPostData = domplate(Firebug.Rep, /*new Firebug.Listene
 
         ///if (Utils.isURLEncodedRequest(file, context))
         // fake Utils.isURLEncodedRequest identification
-        if (contentType && contentType == "application/x-www-form-urlencoded" ||
+        if (contentType && contentType == "app/x-www-form-urlencoded" ||
             data && data.indexOf("=") != -1)
         {
             ///var lines = text.split("\n");
@@ -21987,13 +21987,13 @@ Firebug.NetMonitor.Utils =
     isURLEncodedRequest: function(file, context)
     {
         var text = Utils.getPostText(file, context);
-        if (text && text.toLowerCase().indexOf("content-type: application/x-www-form-urlencoded") == 0)
+        if (text && text.toLowerCase().indexOf("content-type: app/x-www-form-urlencoded") == 0)
             return true;
 
-        // The header value doesn't have to be always exactly "application/x-www-form-urlencoded",
+        // The header value doesn't have to be always exactly "app/x-www-form-urlencoded",
         // there can be even charset specified. So, use indexOf rather than just "==".
         var headerValue = Utils.findHeader(file.requestHeaders, "content-type");
-        if (headerValue && headerValue.indexOf("application/x-www-form-urlencoded") == 0)
+        if (headerValue && headerValue.indexOf("app/x-www-form-urlencoded") == 0)
             return true;
 
         return false;
@@ -23048,13 +23048,13 @@ FBL.ns(function() { with (FBL) {
 var xmlContentTypes =
 [
     "text/xml",
-    "application/xml",
-    "application/xhtml+xml",
-    "application/rss+xml",
-    "application/atom+xml",,
-    "application/vnd.mozilla.maybe.feed",
-    "application/rdf+xml",
-    "application/vnd.mozilla.xul+xml"
+    "app/xml",
+    "app/xhtml+xml",
+    "app/rss+xml",
+    "app/atom+xml",,
+    "app/vnd.mozilla.maybe.feed",
+    "app/rdf+xml",
+    "app/vnd.mozilla.xul+xml"
 ];
 
 // ************************************************************************************************
@@ -29448,7 +29448,7 @@ function objectToString(object)
 FBL.ns(function() { with (FBL) {
 // ************************************************************************************************
 
-// If application isn't in trace mode, the FBTrace panel won't be loaded
+// If app isn't in trace mode, the FBTrace panel won't be loaded
 if (!Env.Options.enableTrace) return;
 
 // ************************************************************************************************

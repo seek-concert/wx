@@ -531,7 +531,7 @@ SWFUpload.prototype.getFlashHTML = function () {
 	if (KindEditor.IE && KindEditor.V > 8) {
 		classid = ' classid = "clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"';
 	}
-	return ['<object id="', this.movieName, '"' + classid + ' type="application/x-shockwave-flash" data="', this.settings.flash_url, '" width="', this.settings.button_width, '" height="', this.settings.button_height, '" class="swfupload">',
+	return ['<object id="', this.movieName, '"' + classid + ' type="app/x-shockwave-flash" data="', this.settings.flash_url, '" width="', this.settings.button_width, '" height="', this.settings.button_height, '" class="swfupload">',
 				'<param name="wmode" value="', this.settings.button_window_mode, '" />',
 				'<param name="movie" value="', this.settings.flash_url, '" />',
 				'<param name="quality" value="high" />',

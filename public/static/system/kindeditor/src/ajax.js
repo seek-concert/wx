@@ -59,7 +59,7 @@ function _ajax(url, fn, method, param, dataType) {
 			params.push(encodeURIComponent(key) + '=' + encodeURIComponent(val));
 		});
 		try {
-			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xhr.setRequestHeader('Content-Type', 'app/x-www-form-urlencoded');
 		} catch (e) {}
 		xhr.send(params.join('&'));
 	} else {

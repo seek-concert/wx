@@ -132,6 +132,6 @@ $result['total_count'] = count($file_list);
 $result['file_list'] = $file_list;
 
 //输出JSON字符串
-header('Content-type: application/json; charset=UTF-8');
+header('Content-type: app/json; charset=UTF-8');
 $json = new Services_JSON();
 echo $json->encode($result);
